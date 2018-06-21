@@ -1,0 +1,152 @@
+body {
+	/*width: 100%;
+	height: 100%;*/
+	background: url(../images/index_bg.png) no-repeat;
+	background-size: cover;
+	overflow: hidden;
+	color: #fff;
+	font-size: 1.166666rem;
+}
+.index-container {
+	/*width: 100%;
+	height: 100%;*/
+	padding: 0 8.166666rem;
+	margin: 0 auto;
+	position: relative;
+}
+.slgon {
+	margin-top: 4.166666rem;
+	margin-bottom: 4.333333rem;
+	/*position: absolute;
+	top: 4.166666rem;
+	left: 0;*/
+}
+.slgon1 {
+	width:19.666666rem;
+	height: 2.666666rem;
+	background: url(../images/index_slgon1.png) no-repeat;
+	background-size: cover;
+	margin-bottom: 0.75rem;
+}
+.slgon2 {
+	width: 26.25rem;
+	height: 2.666666rem;
+	background: url(../images/index_slgon2.png) no-repeat;
+	background-size: cover;
+}
+.index-title {
+	width:122.416666rem;
+	height: 8rem;
+	background: url(../images/index_title.png) no-repeat;
+	background-size: cover;
+	margin: 0 auto;
+}
+
+
+.index-content {
+	width : 108.25rem;
+	margin: 6.5rem auto;
+}
+
+.index-content a {
+	display: block;
+}
+
+.section-item-title {
+	padding-left: 1.666666rem;
+	padding-top: 1.583333rem;
+}
+
+.section-item-title h2{
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.section-item-title p{
+	font-size: 1.166666rem;
+	font-weight: bold;
+	
+}
+
+
+.section1 {
+	width: 21.166666rem;
+	height: 36.083333rem;
+	float: left;
+}
+
+.section1-item {
+	width: 21.166666rem;
+	height: 17.666666rem;
+	background: linear-gradient(#DF3439, #DD3137);
+	margin-bottom: 0.75rem;
+	border-radius: 0.833333rem;
+}
+.section1-item:last-child {
+	background: linear-gradient(#2772E6, #388AEE);
+	margin-bottom: none;
+}
+
+
+.section2 {
+	width: 39.666666rem;
+	height: 36.083333rem;
+	border-radius: 0.833333rem;
+	float: left;
+	background: url(../images/house.png) no-repeat;
+	background-size: cover;
+	margin: 0 0.833333rem;
+}
+
+.section3 {
+	width: 45.75rem;
+	height: 36.083333rem;
+	float: left;
+}
+
+.section3 .section3-item-top {
+	width: 45.75rem;
+	height: 17.666666rem;
+	background: url(../images/resource.png) no-repeat;
+	background-size: cover;
+	border-radius: 0.833333rem;
+	margin-bottom: 0.75rem;
+}
+.section3 .section3-item-left {
+	width: 27.416666rem;
+	height: 17.666666rem;
+	background: url(../images/readme.png) no-repeat;
+	background-size: cover;
+	border-radius: 0.833333rem;
+	float: left;
+}
+.section3 .section3-item-right {
+	width: 17.75rem;
+	height: 17.666666rem;
+	border-radius: 0.833333rem;
+	background: linear-gradient(#DA361C, #E75C33);
+	float: right;
+}
+
+
+
+
+
+
+
+
+.wechat {
+	width: 15.333333rem;
+	height: 15.333333rem;
+	background: url(../images/wechat.png) no-repeat;
+	background-size: cover;
+}
+.company {
+	width: 40.583333rem;
+	height: 2.25rem;
+	background: url(../images/company.png) no-repeat;
+	background-size: cover;
+	position: absolute;
+	right:8.166666rem;
+	bottom: 2.416666rem;
+}
