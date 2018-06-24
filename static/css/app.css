@@ -1,25 +1,24 @@
 body {
-	/*width: 100%;
-	height: 100%;*/
+	width: 100%;
+/*	height: 100%;*/
 	background: url(../images/index_bg.png) no-repeat;
 	background-size: cover;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	color: #fff;
 	font-size: 1.166666rem;
 }
 .index-container {
-	/*width: 100%;
-	height: 100%;*/
+	height: 100%;
 	padding: 0 8.166666rem;
 	margin: 0 auto;
 	position: relative;
 }
 .slgon {
-	margin-top: 4.166666rem;
-	margin-bottom: 4.333333rem;
-	/*position: absolute;
-	top: 4.166666rem;
-	left: 0;*/
+	width: 26.25rem;
+	height: 6.083333rem;
+	/*height: 14.583333rem;*/
+	padding-top:  4.166666rem;
+	padding-bottom: 1.2rem;*/
 }
 .slgon1 {
 	width:19.666666rem;
@@ -64,8 +63,8 @@ body {
 
 .section-item-title p{
 	font-size: 1.166666rem;
+	line-height: 2rem;
 	font-weight: bold;
-	
 }
 
 
@@ -78,14 +77,39 @@ body {
 .section1-item {
 	width: 21.166666rem;
 	height: 17.666666rem;
-	background: linear-gradient(#DF3439, #DD3137);
+	background:  url(../images/jiuye_bg.png) no-repeat;
+	background-size: cover;
 	margin-bottom: 0.75rem;
 	border-radius: 0.833333rem;
 }
 .section1-item:last-child {
-	background: linear-gradient(#2772E6, #388AEE);
+	background:  url(../images/jiuye_bg.png) no-repeat;
+	background-size: cover;
 	margin-bottom: none;
 }
+
+.icon-box {
+	width: 100%;
+	
+	
+	
+}
+.icon-box a {
+	display: block;
+	width: 50%;
+	height: 9.333333rem;
+	float: left;
+	text-align: center;
+	position: relative;
+	
+}
+.icon-box a p {
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+}
+
 
 
 .section2 {
@@ -96,6 +120,20 @@ body {
 	background: url(../images/house.png) no-repeat;
 	background-size: cover;
 	margin: 0 0.833333rem;
+	position: relative;
+	overflow: hidden;
+}
+.section2-content {
+	background: rgba(0,0,0,.4);
+	line-height: 3rem;
+	padding: 1rem 2rem;
+	font-size: 1.166666rem;
+	position: absolute;
+	bottom:0;
+}
+
+.section2-content a {
+	display: inline-block;
 }
 
 .section3 {
@@ -124,23 +162,34 @@ body {
 	width: 17.75rem;
 	height: 17.666666rem;
 	border-radius: 0.833333rem;
-	background: linear-gradient(#DA361C, #E75C33);
+	background:  url(../images/guide_bg.png) no-repeat;
+	background-size: cover;
 	float: right;
 }
 
 
-
-
-
-
-
-
+.wechat-focus {
+	width: 15.333333rem;
+	text-align: center;
+	position: absolute;
+	bottom: 2.25rem;
+}
+.wechat-focus img {
+	display: block;
+	text-align: center;
+}
 .wechat {
 	width: 15.333333rem;
 	height: 15.333333rem;
-	background: url(../images/wechat.png) no-repeat;
-	background-size: cover;
 }
+.wechat-text {
+	width: 13.833333rem;
+	height: 29px;
+	margin-top: 0.75rem;
+	margin-left:1rem;
+}
+
+
 .company {
 	width: 40.583333rem;
 	height: 2.25rem;
