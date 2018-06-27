@@ -157,7 +157,7 @@ body {
 }
 .item-level-one span:first-child {
 	font-size: 2rem;
-	font-weight: bold;
+	
 }
 .item-level-one span:last-child {
 	font-size: 1.5rem;
@@ -166,8 +166,8 @@ body {
 }
 .item-level-one span:last-child b{
 	font-size: 3.833333rem;
-	/*font-weight: bold;*/
-	font-weight: normal;
+	/*font-weight: bold;
+	font-weight: normal;*/
 	color: #50D6F1;
 }
 
@@ -185,7 +185,8 @@ body {
 	line-height: 5rem;
 	padding: 0 1.75rem;
 	background: #100635;
-	clear: both;
+	/*clear: both;*/
+	border-top: 1px solid #0c0026;
 }
 .item-level-two li span:first-child {
 	display: inline-block;
