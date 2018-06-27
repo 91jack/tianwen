@@ -185,9 +185,18 @@ body {
 	line-height: 5rem;
 	padding: 0 1.75rem;
 	background: #100635;
-	/*clear: both;*/
+	clear: both;
 	border-top: 1px solid #0c0026;
+	overflow: hidden;
 }
+
+.item-level-two li:before,
+.item-level-two li:after {
+	height: 0,
+	content: '';
+	clear: both;
+}
+
 .item-level-two li span:first-child {
 	display: inline-block;
 	/*width: 9.166666rem;*/
@@ -200,6 +209,7 @@ body {
 	float: right;
 	font-size: 1.5rem;
 	color: #50D6F1;
+	text-align: right;
 }
 .item-level-two li span:last-child b{
 	
