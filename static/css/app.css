@@ -7,6 +7,9 @@ body {
 	color: #fff;
 	font-size: 1.166666rem;
 }
+.clickbtn {
+	cursor: pointer;
+}
 .index-container {
 	height: 100%;
 	padding: 0 8.166666rem;
