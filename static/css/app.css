@@ -130,6 +130,7 @@ body {
 	font-size: 1.166666rem;
 	position: absolute;
 	bottom:0;
+	cursor: pointer;
 }
 
 .section2-content a {
