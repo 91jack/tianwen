@@ -32,38 +32,7 @@
 							<p>Employment and entrepreneurship</p>
 						</div>
 						<div class="section-item-content">
-							<ul class="section-item-list">
-								<li>
-									<span>1</span>
-									<span>红星美凯龙解决就业</span>
-									<span>121人</span>
-								</li>
-								<li>
-									<span>2</span>
-									<span>红星美凯龙解决就业</span>
-									<span>121人</span>
-								</li>
-								<li>
-									<span>3</span>
-									<span>红星美凯龙解决就业</span>
-									<span>121人</span>
-								</li>
-								<li>
-									<span>4</span>
-									<span>红星美凯龙解决就业</span>
-									<span>121人</span>
-								</li>
-								<li>
-									<span>5</span>
-									<span>红星美凯龙解决就业</span>
-									<span>121人</span>
-								</li>
-								<li>
-									<span>6</span>
-									<span>红星美凯龙解决就业</span>
-									<span>121人</span>
-								</li>
-								<ul>
+							<ul class="section-item-list" id="cygj"><ul>
 						</div>
 					</div>
 				
@@ -170,7 +139,7 @@
 					</div>
 					<div class="section-item-content">
 						<div class="section3-tab-btn">
-							<a href="javaacript:;">服务人群</a>
+							<a href="javaacript:;" class="active">服务人群</a>
 							<a href="javaacript:;">服务单位</a>
 							<a href="javaacript:;">夜市摊位</a>
 							<a href="javaacript:;">创业街</a>
@@ -178,33 +147,11 @@
 						</div>
 						
 						<div class="section3-tab-content">
-							<ul class="section-item-list">
-								<li>
-									<span>1</span>
-									<span>红星美凯龙解决就业</span>
-									<span>123人</span>
-								</li>
-								<li>
-									<span>2</span>
-									<span>红星美凯龙解决就业</span>
-									<span>123人</span>
-								</li>
-								<li>
-									<span>3</span>
-									<span>红星美凯龙解决就业</span>
-									<span>123人</span>
-								</li>
-								<li>
-									<span>4</span>
-									<span>红星美凯龙解决就业</span>
-									<span>123人</span>
-								</li>
-								<li>
-									<span>5</span>
-									<span>红星美凯龙解决就业</span>
-									<span>123人</span>
-								</li>
-							<ul>
+							<ul class="section-item-list fwrq active"></ul>
+							<ul class="section-item-list fwdw"></ul>
+							<ul class="section-item-list booth"></ul>
+							<ul class="section-item-list shops"></ul>
+							<ul class="section-item-list gygw"></ul>		
 						</div>
 						
 					</div>
@@ -217,34 +164,7 @@
 						<p>Real time dynamic</p>
 					</div>
 					<div class="section-item-content">
-						<ul class="section-item-list section3-list">
-							<li>
-								<span>用户名</span>
-							
-								<span>时间</span>
-							</li>
-							<li>
-								<span>MOON</span>
-								<span>2017-05-21-17:00</span>
-							</li>
-							<li>
-								<span>MOON</span>
-								<span>2017-05-21-17:00</span>
-							</li>
-							<li>
-								<span>MOON</span>
-								<span>2017-05-21-17:00</span>
-							</li>
-							<li>
-								<span>MOON</span>
-								<span>2017-05-21-17:00</span>
-							</li>
-							<li>
-								<span>MOON</span>
-								<span>2017-05-21-17:00</span>
-							</li>
-							
-						<ul>
+						<ul class="section-item-list section3-list"><ul>
 					</div>
 				</div>
 			</div>
@@ -304,13 +224,274 @@
 		<script src="static/js/common.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				$('.section-item-list li').each(function(){
-					var index = $(this).index();
-					console.log(index)
-					if(index >= 3){
-						$(this).children('span:first-child').css('background','#3C9DD2')
+				// 就业创业共建单位
+				$.ajax({
+					type:"get",
+					url:"http://tianwen.xnshequ.com/tongji_jiuye/cygj?jsoncallback=?",
+					dataType: "jsonp",
+					success: function(res){
+						console.log(res.data)
+						var str = '';
+						for(var i=0;i<res.data.length;i++){
+							str += "<li>"
+									if(i<3){
+										str += "<span style='background:#E58B26;'>"+ (i+1) +"</span>"
+									}else{
+										str += "<span>"+ (i+1) +"</span>"
+									}
+							str	+= "<span>"+ res.data[i].cp_name + "</span>"
+									+ "<span>"+ res.data[i].num + "人</span>"
+									+ "</li>"
+						}
+
+						$('#cygj').append(str);
 					}
+				});
+				
+				
+				// 就业动车社会效益展示
+				$.ajax({
+					type:"get",
+					url:"http://tianwen.xnshequ.com/tongji_jiuye/sbd?jsoncallback=?",
+					dataType: "jsonp",
+					success: function(res){
+						console.log(res.data)
+						var fwrqStr = '';
+						for(var i=0;i<res.data.fwrq.length;i++){
+							fwrqStr += "<li>"
+									if(i<3){
+										fwrqStr += "<span style='background:#E58B26;'>"+ (i+1) +"</span>"
+									}else{
+										fwrqStr += "<span>"+ (i+1) +"</span>"
+									}
+							fwrqStr += "<span>"+ res.data.fwrq[i].ptype + "</span>"
+									+ "<span>"+ res.data.fwrq[i].num + "人</span>"
+									+ "</li>"
+						}
+						// 服务人群
+						$('.fwrq').append(fwrqStr)
+						
+						
+						var fwdwStr = '';
+						for(var i=0;i<res.data.fwdw.length;i++){
+							fwdwStr += "<li>"
+									if(i<3){
+										fwdwStr += "<span style='background:#E58B26;'>"+ (i+1) +"</span>"
+									}else{
+										fwdwStr += "<span>"+ (i+1) +"</span>"
+									}
+							fwdwStr +="<span>"+ res.data.fwdw[i].cp_name+ "</span>"
+									+ "<span>"+ res.data.fwdw[i].num + "人</span>"
+									+ "</li>"
+						}
+						// 服务单位
+						$('.fwdw').append(fwdwStr)	
+							
+						var boothStr = '';
+						for(var i=0;i<res.data.booth.length;i++){
+							boothStr += "<li>"
+									if(i<3){
+										boothStr += "<span style='background:#E58B26;'>"+ (i+1) +"</span>"
+									}else{
+										boothStr += "<span>"+ (i+1) +"</span>"
+									}
+							boothStr += "<span>"+ res.data.booth[i].type + "</span>"
+									+ "<span>"+ res.data.booth[i].jy_num + "人</span>"
+									+ "</li>"
+						}
+						// 夜市摊位
+						$('.booth').append(boothStr)
+						
+						
+						var shopsStr = '';
+						for(var i=0;i<res.data.shops.length;i++){
+							shopsStr += "<li>"
+									if(i<3){
+										shopsStr += "<span style='background:#E58B26;'>"+ (i+1) +"</span>"
+									}else{
+										shopsStr += "<span>"+ (i+1) +"</span>"
+									}
+							shopsStr += "<span>"+ res.data.shops[i].sp_name + "</span>"
+									+ "<span>"+ res.data.shops[i].jy_num + "人</span>"
+									+ "</li>"
+						}
+							// 创业街
+						$('.shops').append(shopsStr)
+						
+						
+						
+						var gygwStr = '';
+						for(var i=0;i<res.data.gygw.length;i++){
+							
+							gygwStr += "<li>"
+									if(i<3){
+										gygwStr += "<span style='background:#E58B26;'>"+ (i+1) +"</span>"
+									}else{
+										gygwStr +="<span>"+ (i+1) +"</span>"
+									}
+							gygwStr += "<span>"+ res.data.gygw[i].cp_name + "</span>"
+									+ "<span>"+ res.data.gygw[i].ac_name + "人</span>"
+									+ "</li>"
+						}
+						// 公益岗位
+						$('.gygw').append(gygwStr)
+					}
+				});
+				
+				$('.section3-tab-btn a').each(function(){
+					$(this).on('click', function(){
+						var index = $(this).index()
+						$(this).addClass('active').siblings().removeClass('active');
+						$('.section3-tab-content ul').eq(index).addClass('active').siblings().removeClass('active');
+					})
 				})
+				    
+				
+				// 就业动车岗位分类展示
+				var xData = [];
+				var barData = [];
+				$.ajax({
+					type:"get",
+					url:"http://tianwen.xnshequ.com/tongji_jiuye/jobcate?jsoncallback=?",
+					dataType: "jsonp",
+					success: function(res){
+						console.log(res.data)
+						xData = ['服务类','技术类','销售类','质检类','其他类']
+						barData = [res.data.fwl_count,res.data.jsl_count,res.data.xsl_count,res.data.zjl_count,res.data.qtl_count];
+						barChartFn(xData,barData)
+					}
+				});
+
+				//就业动车实时动态
+				$.ajax({
+					type:"get",
+					url:"http://tianwen.xnshequ.com/tongji_jiuye/rtdynamic?jsoncallback=?",
+					dataType: "jsonp",
+					success: function(res){
+						console.log(res)
+						var str = '';
+						str += "	<li><span>用户名</span><span>时间</span></li>";
+						for(var i=0;i<res.data.users.length;i++){
+							str += "<li>"
+									+ "<span>"+ (i+1) +"</span>"
+									+ "<span>"+ res.data.users[i].nick_name + "</span>"
+									+ "<span>"+ res.data.users[i].last_time + "</span>"
+									+ "</li>"
+						}
+
+						$('.section3-list').append(str);
+							
+					}
+				});
+
+				//就业动车关注度
+				$.ajax({
+					type:"get",
+					url:"http://tianwen.xnshequ.com/tongji_jiuye/channel?jsoncallback=?",
+					dataType: "jsonp",
+					success: function(res){
+						console.log(res)
+						var xlineData = res.xaxis_data;
+						var linejobData = res.series_job;
+						var linehelpData = res.series_help;
+						var linetrainData =  res.series_train;
+						var linepublicData = res.series_public;
+						lineChartFn(xlineData,linejobData,linehelpData,linetrainData,linepublicData)
+					}
+				});
+				
+				
+				
+				
+				// 柱状图
+				// 基于准备好的dom，初始化echarts实例
+				function barChartFn(xData,barData){
+	        var barChart = echarts.init(document.getElementById('barchart'));
+					var barOption = {
+				    color: ['#3398DB'],
+				    tooltip : {
+				        trigger: 'axis',
+				        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+				            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+				        }
+				    },
+				    grid: {
+				    		top: '10%',
+				        left: '0',
+				        right: '0',
+				        bottom: '0',
+				        containLabel: true
+				    },
+				    xAxis : [
+				        {
+			            type : 'category',
+			            axisLine : {
+			            	lineStyle : {
+			            		color: '#130C44'
+			            	}
+			            },
+			            
+			            axisTick: {
+			            	show: false,
+			              alignWithLabel: true
+			            },
+			            axisLabel : {
+			            	color: '#fff',
+			            },
+			            data : xData,
+				            
+				        }
+				    ],
+				    yAxis : [
+				        {		
+				        	type : 'value',
+				        	axisLabel : {
+			            	color: '#fff',
+			            },
+			           	axisLine : {
+			            	lineStyle : {
+			            		color: '#130C44'
+			            	}
+			            },
+			            splitLine: {
+			            	lineStyle:{
+			            		color: '#130C44'
+			            	}
+			            },
+				        }
+				    ],
+				    series : [
+				        {
+				            name:'直接访问',
+				            type:'bar',
+				            barWidth: '10',
+				           	itemStyle: {
+		                normal: {
+		                    color: new echarts.graphic.LinearGradient(
+		                        0, 0, 0, 1,
+		                        [
+		                            {offset: 0, color: '#C308CB'},
+		                            //{offset: 0.5, color: '#188df0'},
+		                            {offset: 1, color: '#7704D1'}
+		                        ]
+		                    )
+		                },
+		            },
+				            data:barData
+				        }
+				    ]
+					};
+					
+					// 使用刚指定的配置项和数据显示图表。
+	        barChart.setOption(barOption);
+				}
+        
+        
+        
+
+
+
+
 				
 				// 时间
 				// 获取本地时间
@@ -338,98 +519,7 @@
 				},1000)
 				
 
-				// 柱状图
-				// 基于准备好的dom，初始化echarts实例
-        var barChart = echarts.init(document.getElementById('barchart'));
-				var barOption = {
-			    color: ['#3398DB'],
-			    tooltip : {
-			        trigger: 'axis',
-			        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-			            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-			        }
-			    },
-			    grid: {
-			    		top: '10%',
-			        left: '0',
-			        right: '0',
-			        bottom: '0',
-			        containLabel: true
-			    },
-			    xAxis : [
-			        {
-		            type : 'category',
-		            axisLine : {
-		            	lineStyle : {
-		            		color: '#130C44'
-		            	}
-		            },
-		            
-		            axisTick: {
-		            	show: false,
-		              alignWithLabel: true
-		            },
-		            axisLabel : {
-		            	color: '#fff',
-//		            	fontSize: '18',
-		            },
-		            data : ['服务类', '技术类', '销售类', '服务类', '其他'],
-			            
-			        }
-			    ],
-			    yAxis : [
-			        {		
-			        	type : 'value',
-			        	axisLabel : {
-		            	color: '#fff',
-//		            	fontSize: '18',
-		            },
-		           	axisLine : {
-		            	lineStyle : {
-		            		color: '#130C44'
-		            	}
-		            },
-		            splitLine: {
-		            	lineStyle:{
-		            		color: '#130C44'
-		            	}
-		            },
-			        }
-			    ],
-			    series : [
-			        {
-			            name:'直接访问',
-			            type:'bar',
-			            barWidth: '10',
-			           	itemStyle: {
-	                normal: {
-	                    color: new echarts.graphic.LinearGradient(
-	                        0, 0, 0, 1,
-	                        [
-	                            {offset: 0, color: '#C308CB'},
-	                            //{offset: 0.5, color: '#188df0'},
-	                            {offset: 1, color: '#7704D1'}
-	                        ]
-	                    )
-	                },
-//	                emphasis: {
-//	                    color: new echarts.graphic.LinearGradient(
-//	                        0, 0, 0, 1,
-//	                        [
-//	                            {offset: 0, color: '#2378f7'},
-//	                            {offset: 0.7, color: '#2378f7'},
-//	                            {offset: 1, color: '#83bff6'}
-//	                        ]
-//	                    )
-//	                }
-	            },
-			            data:[900, 600, 300, 200, 1000]
-			        }
-			    ]
-				};
-				
-				// 使用刚指定的配置项和数据显示图表。
-        barChart.setOption(barOption);
+
 
 				// 重庆地图
 				var res = [
@@ -456,7 +546,7 @@
                 })
             }
             mapdata = d;
-            console.log(d)
+            //console.log(d)
             //注册地图
             echarts.registerMap('chongqing', data);
             //绘制地图
@@ -557,7 +647,7 @@
                     coordinateSystem: 'geo',
 										data: res,
                     symbolSize: function (val) {
-                    	console.log(val)
+                    	//console.log(val)
                       return val[2]/80;
                     },
                     label: {
@@ -618,7 +708,7 @@
 			            type:'pie',
 			            radius: ['40%', '55%'],
 			            center: ['50%','40%'],
-			            label: {
+			            label: {  
 			                normal: {
 			                    //show: false,
 			                    position: 'outside',
@@ -875,97 +965,92 @@
 					
 				
 				// 折线图
-				var lineChart = echarts.init(document.getElementById('linechart'));
-				var lineOption = {
-					color: ['#DD5858','#00B37A','#D79D4B','#40B3E2'],
-			    tooltip: {
-			        trigger: 'axis'
-			    },
-			    legend: {
-			    	top: 10,
-			    	textStyle : {
-			    		color: '#fff',
-			    	},
-			       data:['找工作','找职业','找培训','公共服务']
-			    },
-			    grid: {
-			    		top: '15%',
-			        left: '5%',
-			        right: '0',
-			        bottom: '5%',
-			        containLabel: true
-			    },
-			    xAxis : [
-			        {
-		            type : 'category',
-		            axisLine : {
-		            	lineStyle : {
-		            		color: '#130C44'
-		            	}
-		            },
-		            
-		            axisTick: {
-		            	show: false,
-		              alignWithLabel: true
-		            },
-		            axisLabel : {
-		            	color: '#fff',
-//		            	fontSize: '18',
-		            },
-		             data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+				function lineChartFn(xlineData,linejobData,linehelpData,linetrainData,linepublicData){
+					var lineChart = echarts.init(document.getElementById('linechart'));
+					var lineOption = {
+						color: ['#DD5858','#00B37A','#D79D4B','#40B3E2'],
+				    tooltip: {
+				        trigger: 'axis'
+				    },
+				    legend: {
+				    	top: 10,
+				    	textStyle : {
+				    		color: '#fff',
+				    	},
+				       data:['找工作','找帮助','找培训','公共服务']
+				    },
+				    grid: {
+				    		top: '15%',
+				        left: '5%',
+				        right: '0',
+				        bottom: '5%',
+				        containLabel: true
+				    },
+				    xAxis : [
+				        {
+			            type : 'category',
+			            axisLine : {
+			            	lineStyle : {
+			            		color: '#130C44'
+			            	}
+			            },
 			            
-			        }
-			    ],
-			   
-			    yAxis: {
-			        type: 'value',
-			        
-			        	axisLabel : {
-		            	color: '#fff',
-//		            	fontSize: '18',
-		            },
-		           	axisLine : {
-		            	lineStyle : {
-		            		color: '#130C44'
-		            	}
-		            },
-		            splitLine: {
-		            	lineStyle:{
-		            		color: '#130C44'
-		            	}
-		            },
-			        
-			    },
-			    series: [
-			        {
-			            name:'找工作',
-			            type:'line',
-			            //stack: '总量',
-			            data:[120, 132, 101, 134, 90, 230, 210,110,120,130,150,450,690]
-			        },
-			        {
-			            name:'找职业',
-			            type:'line',
-			           // stack: '总量',
-			            data:[220, 182, 191, 234, 290, 330, 310,101, 134, 90, 230, 210,110]
-			        },
-			        {
-			            name:'找培训',
-			            type:'line',
-			            //stack: '总量',
-			            data:[150, 232, 201, 101, 134, 90, 230, 210,110,154, 190, 330, 410]
-			        },
-			        {
-			            name:'公共服务',
-			            type:'line',
-			            //stack: '总量',
-			            data:[320,101, 134, 90, 230, 210,110, 332, 301, 334, 390, 330, 320]
-			        }
-			       
-			    ]
-				};
-
-				lineChart.setOption(lineOption);
+			            axisTick: {
+			            	show: false,
+			              alignWithLabel: true
+			            },
+			            axisLabel : {
+			            	color: '#fff',
+			            },
+			             data:xlineData
+				            
+				        }
+				    ],
+				   
+				    yAxis: {
+				        type: 'value',
+				        	axisLabel : {
+			            	color: '#fff',
+			            },
+			           	axisLine : {
+			            	lineStyle : {
+			            		color: '#130C44'
+			            	}
+			            },
+			            splitLine: {
+			            	lineStyle:{
+			            		color: '#130C44'
+			            	}
+			            },
+				        
+				    },
+				    series: [
+				        {
+				            name:'找工作',
+				            type:'line',
+				            data: linejobData
+				        },
+				        {
+				            name:'找帮助',
+				            type:'line',
+				            data: linehelpData
+				        },
+				        {
+				            name:'找培训',
+				            type:'line',
+				            data: linetrainData
+				        },
+				        {
+				            name:'公共服务',
+				            type:'line',
+				            data: linepublicData
+				        }
+				       
+				    ]
+					};
+	
+					lineChart.setOption(lineOption);
+				}
 				
 			})
 			
