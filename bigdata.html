@@ -239,7 +239,15 @@
 									}else{
 										str += "<span>"+ (i+1) +"</span>"
 									}
-							str	+= "<span>"+ res.data[i].cp_name + "</span>"
+									
+									if(res.data[i].cp_name.length>18){
+										var cp_name = res.data[i].cp_name.substr(0,18) + '...';
+									}else{
+										var cp_name = res.data[i].cp_name
+									}
+									
+									console.log(cp_name)
+							str	+= "<span>"+ cp_name + "</span>"
 									+ "<span>"+ res.data[i].num + "人</span>"
 									+ "</li>"
 						}
@@ -330,7 +338,7 @@
 										gygwStr +="<span>"+ (i+1) +"</span>"
 									}
 							gygwStr += "<span>"+ res.data.gygw[i].cp_name + "</span>"
-									+ "<span>"+ res.data.gygw[i].ac_name + "人</span>"
+									+ "<span>"+ res.data.gygw[i].ac_name + "</span>"
 									+ "</li>"
 						}
 						// 公益岗位
@@ -372,9 +380,14 @@
 						var str = '';
 						str += "	<li><span>用户名</span><span>时间</span></li>";
 						for(var i=0;i<res.data.users.length;i++){
+							if(res.data.users[i].nick_name.length > 10){
+								var nick_name = res.data.users[i].nick_name.substr(0,10)+'...'
+							}else{
+								var nick_name = res.data.users[i].nick_name
+							}
+							
 							str += "<li>"
-									+ "<span>"+ (i+1) +"</span>"
-									+ "<span>"+ res.data.users[i].nick_name + "</span>"
+									+ "<span>"+ nick_name + "</span>"
 									+ "<span>"+ res.data.users[i].last_time + "</span>"
 									+ "</li>"
 						}
@@ -400,6 +413,20 @@
 					}
 				});
 				
+				// 就业动车网格服务人力分布图
+				$.ajax({
+					type:"get",
+					url:"http://tianwen.xnshequ.com/tongji_jiuye/grid?jsoncallback=?",
+					dataType: "jsonp",
+					success: function(res){
+						console.log(res)
+						pieChart1Fn(res.data.age);
+						pieChart2Fn(res.data.education);
+						pieChart3Fn(res.data.zzmm);
+						pieChart4Fn(res.data.kunnan);
+						pieChart5Fn(res.data.daxue);
+					}
+				});
 				
 				
 				
@@ -486,12 +513,6 @@
 	        barChart.setOption(barOption);
 				}
         
-        
-        
-
-
-
-
 				
 				// 时间
 				// 获取本地时间
@@ -672,290 +693,289 @@
             mapChart.setOption(option);
         }
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 				// 圆环图
 				// 年龄
-				var pieChart1 = echarts.init(document.getElementById('piechart1'));
-				var pieOption1 = {
-					color: ['#FFB50A','#8C04FA','#10BD8F','#0DB7DB'],
-					tooltip: {
-			        trigger: 'item',
-			        formatter: "{a} <br/>{b}: {c} ({d}%)"
-			    },
-			    legend: {
-							bottom: '10',
-			        itemWidth: 10,
-			        itemHeight: 10,
-			        borderRadius: 10,
-			        padding: [10, 20],
-			        textStyle: {
-			        	color: '#fff',
-			        },
-			        data:['25岁及以下','25-35','45岁及以上','35-45',]
-			    },
-			    series: [
-			        {
-			            name:'年龄',
-			            type:'pie',
-			            radius: ['40%', '55%'],
-			            center: ['50%','40%'],
-			            label: {  
-			                normal: {
-			                    //show: false,
-			                    position: 'outside',
-			                    formatter:  '{d}%',
-			                    color: '#fff',
-			                    
-			                },
-			              
-			            },
-			            labelLine: {
-			              normal: {
-			                length: 0,
-			            		length2: 15,
-			                lineStyle: {
-	                    	color: '#fff',
-	                    },
-			              }
-			            },
-			            data:[
-			                {value:335, name:'25岁及以下'},
-			                {value:310, name:'25-35'},
-			                {value:234, name:'45岁及以上'},
-			                {value:135, name:'35-45'},
-			              
-			            ]
-			        }
-			    ]
+				function pieChart1Fn(age){
+					var pieChart1 = echarts.init(document.getElementById('piechart1'));
+					var pieOption1 = {
+						color: ['#FFB50A','#8C04FA','#10BD8F','#0DB7DB'],
+						tooltip: {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b}: {c} ({d}%)"
+				    },
+				    legend: {
+								bottom: '10',
+				        itemWidth: 10,
+				        itemHeight: 10,
+				        borderRadius: 10,
+				        padding: [10, 50],
+				        textStyle: {
+				        	color: '#fff',
+				        },
+				        data:['25岁及以下','25-35','35-45','45岁及以上']
+				    },
+				    series: [
+				        {
+				            name:'年龄',
+				            type:'pie',
+				            radius: ['40%', '55%'],
+				            center: ['50%','40%'],
+				            label: {  
+				                normal: {
+				                    //show: false,
+				                    position: 'outside',
+				                    formatter:  '{d}%',
+				                    color: '#fff',
+				                    
+				                },
+				              
+				            },
+				            labelLine: {
+				              normal: {
+				                length: 0,
+				            		length2: 15,
+				                lineStyle: {
+		                    	color: '#fff',
+		                    },
+				              }
+				            },
+				            data:[
+				                {value:age["25lt"], name:'25岁及以下'},
+				                {value:age["2535"], name:'25-35'},
+				                {value:age["3545"], name:'35-45'},
+				                {value:age["45gt"], name:'45岁及以上'},
+				              
+				            ]
+				        }
+				    ]
+					}
+					pieChart1.setOption(pieOption1);
 				}
-				pieChart1.setOption(pieOption1);
 					
 				// 学历
-				var pieChart2 = echarts.init(document.getElementById('piechart2'));
-				var pieOption2 = {
-					color: ['#FFB50A','#8C04FA','#10BD8F','#10BD8F','#0DB7DB'],
-					tooltip: {
-			        trigger: 'item',
-			        formatter: "{a} <br/>{b}: {c} ({d}%)"
-			    },
-			    legend: {
-							bottom: '10',
-			        itemWidth: 10,
-			        itemHeight: 10,
-			        borderRadius: 10,
-			        padding: [10, 20],
-			        textStyle: {
-			        	color: '#fff',
-			        },
-			        data:['高中及以上','专科及以上','大学及以上']
-			    },
-			    series: [
-			        {
-			            name:'学历',
-			            type:'pie',
-			             radius: ['40%', '55%'],
-			            center: ['50%','40%'],
-			            label: {
-			                normal: {
-			                    //show: false,
-			                    position: 'outside',
-			                    formatter:  '{d}%',
-			                    color: '#fff',
-			                    
-			                },
-			            },
-			            labelLine: {
-			              normal: {
-			                length: 0,
-			            		length2: 15,
-			                lineStyle: {
-	                    	color: '#fff',
-	                    },
-			              }
-			            },
-			            data:[
-			                {value:335, name:'高中及以上'},
-			                {value:310, name:'专科及以上'},
-			                {value:234, name:'大学及以上'},
-			               
-			              
-			            ]
-			        }
-			    ]
+				function pieChart2Fn(education){
+					var pieChart2 = echarts.init(document.getElementById('piechart2'));
+					var pieOption2 = {
+						color: ['#FFB50A','#8C04FA','#10BD8F','#10BD8F','#0DB7DB'],
+						tooltip: {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b}: {c} ({d}%)"
+				    },
+				    legend: {
+								bottom: '10',
+				        itemWidth: 10,
+				        itemHeight: 10,
+				        borderRadius: 10,
+				        padding: [10, 20],
+				        textStyle: {
+				        	color: '#fff',
+				        },
+				        data:['高中及以上','专科及以上','大学及以上']
+				    },
+				    series: [
+				        {
+				            name:'学历',
+				            type:'pie',
+				             radius: ['40%', '55%'],
+				            center: ['50%','40%'],
+				            label: {
+				                normal: {
+				                    //show: false,
+				                    position: 'outside',
+				                    formatter:  '{d}%',
+				                    color: '#fff',
+				                    
+				                },
+				            },
+				            minAngle: 20,
+				            labelLine: {
+				              normal: {
+				                length: 0,
+				            		length2: 15,
+				                lineStyle: {
+		                    	color: '#fff',
+		                    },
+				              }
+				            },
+				            data:[
+				                {value:education["gaozhong"], name:'高中及以上'},
+				                {value:education["zhuanke"], name:'专科及以上'},
+				                {value:education["benke"], name:'大学及以上'},
+				            ]
+				        }
+				    ]
+					}
+					pieChart2.setOption(pieOption2);	
 				}
-				pieChart2.setOption(pieOption2);	
 					
 				// 政治面貌
-				var pieChart3 = echarts.init(document.getElementById('piechart3'));
-				var pieOption3 = {
-					 color: ['#FFB50A','#8C04FA','#10BD8F','#10BD8F','#0DB7DB'],
-					tooltip: {
-			        trigger: 'item',
-			        formatter: "{a} <br/>{b}: {c} ({d}%)"
-			    },
-			    legend: {
-							bottom: '10',
-			        itemWidth: 10,
-			        itemHeight: 10,
-			        borderRadius: 10,
-			        padding: [10, 20],
-			        textStyle: {
-			        	color: '#fff',
-			        },
-			        data:['党员','无党派人士','非党员的其他党派']
-			    },
-			    series: [
-			        {
-			            name:'政治面貌',
-			            type:'pie',
-			            radius: ['40%', '55%'],
-			            center: ['50%','40%'],
-			            label: {
-			                normal: {
-			                    //show: false,
-			                    position: 'outside',
-			                    formatter:  '{d}%',
-			                    color: '#fff',
-			                    
-			                },
-			            },
-			            labelLine: {
-			              normal: {
-			                length: 0,
-			            		length2: 15,
-			                lineStyle: {
-	                    	color: '#fff',
-	                    },
-			              }
-			            },
-			            data:[
-			                {value:335, name:'党员'},
-			                {value:310, name:'无党派人士'},
-			                {value:234, name:'非党员的其他党派'},
-			            ]
-			        }
-			    ]
+				function pieChart3Fn(zzmm){
+					var pieChart3 = echarts.init(document.getElementById('piechart3'));
+					var pieOption3 = {
+						 color: ['#FFB50A','#8C04FA','#10BD8F','#10BD8F','#0DB7DB'],
+						tooltip: {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b}: {c} ({d}%)"
+				    },
+				    legend: {
+								bottom: '10',
+				        itemWidth: 10,
+				        itemHeight: 10,
+				        borderRadius: 10,
+				        padding: [10, 20],
+				        textStyle: {
+				        	color: '#fff',
+				        },
+				        data:['党员','无党派人士','非党员的其他党派']
+				    },
+				    series: [
+				        {
+				            name:'政治面貌',
+				            type:'pie',
+				            radius: ['40%', '55%'],
+				            center: ['50%','40%'],
+				            label: {
+				                normal: {
+				                    //show: false,
+				                    position: 'outside',
+				                    formatter:  '{d}%',
+				                    color: '#fff',
+				                    
+				                },
+				            },
+				            labelLine: {
+				              normal: {
+				                length: 0,
+				            		length2: 15,
+				                lineStyle: {
+		                    	color: '#fff',
+		                    },
+				              }
+				            },
+ 										minAngle: 20,
+				            data:[
+				                {value:zzmm["dangyuan"], name:'党员'},
+				                {value:zzmm["wudangpai"], name:'无党派人士'},
+				                {value:zzmm["qitadang"], name:'非党员的其他党派'},
+				            ]
+				        }
+				    ]
+					}
+					pieChart3.setOption(pieOption3);	
 				}
-				pieChart3.setOption(pieOption3);	
 				
 				// 就业困难人员
-				var pieChart4 = echarts.init(document.getElementById('piechart4'));
-				var pieOption4 = {
-					 color: ['#FFB50A','#8C04FA','#10BD8F','#10BD8F','#0DB7DB'],
-					tooltip: {
-			        trigger: 'item',
-			        formatter: "{a} <br/>{b}: {c} ({d}%)"
-			    },
-			    legend: {
-							bottom: '10',
-			        itemWidth: 10,
-			        itemHeight: 10,
-			        borderRadius: 10,
-			        padding: [10, 20],
-			        textStyle: {
-			        	color: '#fff',
-			        },
-			        data:['4050人员','低保家庭','零就业家庭']
-			    },
-			    series: [
-			        {
-			            name:'就业困难人员',
-			            type:'pie',
-			             radius: ['40%', '55%'],
-			            center: ['50%','40%'],
-			            label: {
-			                normal: {
-			                    //show: false,
-			                    position: 'outside',
-			                    formatter:  '{d}%',
-			                    color: '#fff',
-			                    
-			                },
-			            },
-			            labelLine: {
-			                normal: {
-			                length: 0,
-			            		length2: 15,
-			                lineStyle: {
-	                    	color: '#fff',
-	                    },
-			              }
-			            },
-			            data:[
-			                {value:335, name:'4050人员'},
-			                {value:310, name:'低保家庭'},
-			                {value:234, name:'零就业家庭'},
-			               
-			              
-			            ]
-			        }
-			    ]
+				function pieChart4Fn(kunnan){
+					var pieChart4 = echarts.init(document.getElementById('piechart4'));
+					var pieOption4 = {
+						 color: ['#FFB50A','#8C04FA','#10BD8F','#10BD8F','#0DB7DB'],
+						tooltip: {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b}: {c} ({d}%)"
+				    },
+				    legend: {
+								bottom: '10',
+				        itemWidth: 10,
+				        itemHeight: 10,
+				        borderRadius: 10,
+				        padding: [10, 20],
+				        textStyle: {
+				        	color: '#fff',
+				        },
+				        data:['4050人员','低保家庭','零就业家庭']
+				    },
+				    series: [
+				        {
+				            name:'就业困难人员',
+				            type:'pie',
+				             radius: ['40%', '55%'],
+				            center: ['50%','40%'],
+				            label: {
+				                normal: {
+				                    //show: false,
+				                    position: 'outside',
+				                    formatter:  '{d}%',
+				                    color: '#fff',
+				                    
+				                },
+				            },
+				            labelLine: {
+				                normal: {
+				                length: 0,
+				            		length2: 15,
+				                lineStyle: {
+		                    	color: '#fff',
+		                    },
+				              }
+				            },
+				             minAngle: 20,
+				            data:[
+				                {value:kunnan["4050"], name:'4050人员'},
+				                {value:kunnan["dibao"], name:'低保家庭'},
+				                {value:kunnan["lingjiuye"], name:'零就业家庭'},
+				               
+				              
+				            ]
+				        }
+				    ]
+					}
+					pieChart4.setOption(pieOption4);		
 				}
-				pieChart4.setOption(pieOption4);		
 					
 					
 				// 大学毕业生
-				var pieChart5 = echarts.init(document.getElementById('piechart5'));
-				var pieOption5 = {
-					 color: ['#FFB50A','#8C04FA','#10BD8F','#10BD8F','#0DB7DB'],
-					tooltip: {
-			        trigger: 'item',
-			        formatter: "{a} <br/>{b}: {c} ({d}%)"
-			    },
-			    legend: {
-							bottom: '10',
-			        itemWidth: 10,
-			        itemHeight: 10,
-			        borderRadius: 10,
-			         padding: [10, 20],
-			        textStyle: {
-			        	color: '#fff',
-			        },
-			        data:['男','女']
-			    },
-			    series: [
-			        {
-			            name:'大学毕业生',
-			            type:'pie',
-			            radius: ['40%', '55%'],
-			            center: ['50%','40%'],
-			            label: {
-			            	position: 'outside',
-                    formatter:  '{d}%',
-                    color: '#fff',
-                    align: 'left',
-			              verticalAlign: 'bottom'
-			            },
-			            labelLine: {
-			            	normal: {
-			                length: 0,
-			            		length2: 15,
-			                lineStyle: {
-	                    	color: '#fff',
-	                    },
-			              }
-			            	
-	                   
-			            },
-			            data:[
-			                {value:335, name:'男'},
-			                {value:310, name:'女'},
-			               
-			              
-			            ]
-			        }
-			    ]
+				function pieChart5Fn(daxue){
+					var pieChart5 = echarts.init(document.getElementById('piechart5'));
+					var pieOption5 = {
+						 color: ['#FFB50A','#8C04FA','#10BD8F','#10BD8F','#0DB7DB'],
+						tooltip: {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b}: {c} ({d}%)"
+				    },
+				    legend: {
+								bottom: '10',
+				        itemWidth: 10,
+				        itemHeight: 10,
+				        borderRadius: 10,
+				         padding: [10, 20],
+				        textStyle: {
+				        	color: '#fff',
+				        },
+				        data:['男','女']
+				    },
+				    series: [
+				        {
+				            name:'大学毕业生',
+				            type:'pie',
+				            radius: ['40%', '55%'],
+				            center: ['50%','40%'],
+				            label: {
+				            	position: 'outside',
+	                    formatter:  '{d}%',
+	                    color: '#fff',
+	                    align: 'left',
+				              verticalAlign: 'bottom'
+				            },
+				            labelLine: {
+				            	normal: {
+				                length: 0,
+				            		length2: 15,
+				                lineStyle: {
+		                    	color: '#fff',
+		                    },
+				              }
+				            	
+		                   
+				            },
+				            data:[
+				                {value:daxue["nan"], name:'男'},
+				                {value:daxue["nv"], name:'女'},
+				            ]
+				        }
+				    ]
+					}
+					pieChart5.setOption(pieOption5);	
 				}
-				pieChart5.setOption(pieOption5);	
 					
 					
 					
