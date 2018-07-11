@@ -111,9 +111,14 @@ body {
 	border-radius: 0.166666rem;
 	color: #100635;
 }
-/*.orange{
-	background: #E58B26!important;
-}*/
+.section-item-list li span:nth-child(2) {
+	width: 20rem;
+	overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+
 .section-item-list li span:last-child {
 	display: inline-block;
 	float: right;
