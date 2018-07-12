@@ -3,16 +3,13 @@ body {
 	background: #0C0026;
 	color: #fff;
 	font-size: 1.333333rem;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 .container {
-	
 	padding: 0 1.666666rem;
-	/*margin: 0 auto;*/
 }
 .header {
 	height: 6.666666rem;
-	/*overflow: hidden;*/
 }
 .header-border-top {
 	width: 100%;
@@ -277,8 +274,9 @@ width: 40.583333rem;
 
 .footerchart {
 	clear: both;
-	/*display: none;*/
-}
+	width: 108rem;
+	overflow: hidden;
+}    
 .footer-left-item {
 	float: left;
 	width:;
@@ -287,13 +285,15 @@ width: 40.583333rem;
 	width: 40.583333rem; 
 	float:right;
 }
+
+.piechart-wrap {
+	width: 173.36rem;
+}
 .piechart {
-	width: 21.666666rem;
+	width: 21.6rem;
 	height: 20rem;
 	float: left;
-	
 	position: relative;
-	
 }
 .piechart p {
 	width: 8rem;

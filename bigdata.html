@@ -55,29 +55,29 @@
 						<div class="item-level">
 							<div class="item-level-one">
 								<span>服务人群</span>
-								<span><b>2737</b>人</span>
+								<span><b class="fwrq"></b>人</span>
 							</div>
 							
 							<ul class="item-level-two">
 								<li>
 									<span>线上登记库</span>
-									<span><b>2737</b>人</span>
+									<span><b class="xsdjk"></b>人</span>
 								</li>
 								<li>
 									<span>失业人员</span>
-									<span><b>2456</b>人</span>
+									<span><b class="shiye"></b>人</span>
 								</li>
 								<li>
 									<span>低保户</span>
-									<span><b>28</b>人</span>
+									<span><b class="dibao"></b>人</span>
 								</li>
 								<li>
 									<span>高校毕业生</span>
-									<span><b>23</b>人</span>
+									<span><b class="gaoxiao"></b>人</span>
 								</li>
 								<li>
 									<span>就业困难人员</span>
-									<span><b>122</b>人</span>
+									<span><b class="kunnan"></b>人</span>
 								</li>
 							</ul>
 						</div>
@@ -85,21 +85,21 @@
 						<div class="item-level">
 							<div class="item-level-one">
 								<span>公益性岗位</span>
-								<span><b>2737</b>人</span>
+								<span><b class="gongyi"></b>人</span>
 							</div>
 							
 							<ul class="item-level-two">
 								<li>
 									<span>夜市摊位数</span>
-									<span><b>2737</b>人</span>
+									<span><b class="yeshi"></b>人</span>
 								</li>
 								<li>
 									<span>创业一条街</span>
-									<span><b>2737</b>人</span>
+									<span><b class="chuangye"></b>人</span>
 								</li>
 								<li>
 									<span>定向帮扶</span>
-									<span><b>2737</b>人</span>
+									<span><b class="dxbf"></b>人</span>
 								</li>
 							</ul>
 						</div>
@@ -107,17 +107,17 @@
 						<div class="item-level">
 							<div class="item-level-one">
 								<span>成功服务量</span>
-								<span><b>2737</b>人</span>
+								<span><b class="chenggong"></b>人</span>
 							</div>
 							
 							<ul class="item-level-two last">
 								<li>
 									<span>线下成功<br/>就业人员</span>
-									<span><b>2737</b>人</span>
+									<span><b class="xianxia"></b>人</span>
 								</li>
 								<li>
 									<span>线上自动配<br/>对成功人员</span>
-									<span><b>2737</b>人</span>
+									<span><b class="xianshang"></b>人</span>
 								</li>
 							</ul>
 						</div>
@@ -147,7 +147,7 @@
 						</div>
 						
 						<div class="section3-tab-content">
-							<ul class="section-item-list fwrq active"></ul>
+							<ul class="section-item-list jyfwrq active"></ul>
 							<ul class="section-item-list fwdw"></ul>
 							<ul class="section-item-list booth"></ul>
 							<ul class="section-item-list shops"></ul>
@@ -210,7 +210,7 @@
 					
 					<div class="piechart">
 						<div id="piechart7" style="width:260px;height:240px;"></div>
-						<p>大学毕业生</p>
+						<p>就业状态</p>
 					</div>
 					
 					<div class="piechart">
@@ -272,16 +272,33 @@
 				});
 				
 				// 服务人群，公益性岗位，成功服务量
-
 				$.ajax({
 					type:"get",
 					url:"http://tianwen.xnshequ.com/tongji_jiuye/t3?jsoncallback=?",
 					dataType: "jsonp",
 					success: function(res){
-						console.log(res.data)
-						var str = '';
+						// 服务人群
+						var fwrq = res.data.fwrq;
+						$('.fwrq').text(fwrq.xsdjk*1 + fwrq.shiye*1 + fwrq.dibao*1 + fwrq.gaoxiao*1 + fwrq.kunnan*1);
+						$('.xsdjk').text(fwrq.xsdjk);
+						$('.shiye').text(fwrq.shiye);
+						$('.dibao').text(fwrq.dibao);
+						$('.gaoxiao').text(fwrq.gaoxiao);
+						$('.kunnan').text(fwrq.kunnan);
 						
-
+						// 公益性岗位
+						var gongyi = res.data.gongyi;
+						$('.gongyi').text(gongyi.yeshi*1 + gongyi.chuangye*1 + gongyi.dxbf*1);
+						$('.yeshi').text(gongyi.yeshi);
+						$('.chuangye').text(gongyi.chuangye);
+						$('.dxbf').text(gongyi.dxbf);
+						
+						// 成功服务量
+						var chenggong = res.data.chenggong;
+						$('.chenggong').text(chenggong.xianxia*1 + chenggong.xianshang*1);
+						$('.xianxia').text(chenggong.xianxia);
+						$('.xianshang').text(chenggong.xianshang);
+						
 						
 					}
 				});
@@ -307,7 +324,7 @@
 									+ "</li>"
 						}
 						// 服务人群
-						$('.fwrq').append(fwrqStr)
+						$('.jyfwrq').append(fwrqStr)
 						
 						
 						var fwdwStr = '';
@@ -455,11 +472,29 @@
 						pieChart3Fn(res.data.zzmm);
 						pieChart4Fn(res.data.kunnan);
 						pieChart5Fn(res.data.daxue);
+						pieChart6Fn(res.data.sex);
+						pieChart7Fn(res.data.getjob);
+						pieChart8Fn(res.data.canji);
+						
+						
+						// 饼图轮播
+						
 					}
 				});
 				
-				// 重庆区域地图
 				
+				
+				
+				// 重庆区域地图
+				$.ajax({
+					type:"get",
+					url:"http://tianwen.xnshequ.com/tongji_jiuye/map?jsoncallback=?",
+					dataType: "jsonp",
+					success: function(res){
+						console.log(res)
+						
+					}
+				});
 				
 				// 柱状图
 				// 基于准备好的dom，初始化echarts实例
@@ -674,24 +709,7 @@
                             areaColor: 'darkorange'
                         }
                     },
-                    data: [
-                    	{name: '合川区', value: 423},
-	                    {name: '沙坪坝区', value: 7349},
-	                    {name: '北碚区', value: 65255},
-	                    {name: '开县', value: 2941},
-	                    {name: '云阳县', value: 380414},
-	                    {name: '奉节县', value: 51882},
-	                    {name: '綦江区', value: 3547},
-	                    {name: '璧山县', value: 917092},
-	                    {name: '酉阳土家族苗族自治县', value: 632323},
-	                    {name: '大足区', value: 197568},
-	                    {name: '石柱土家族自治县', value: 9945},
-	                    {name: '丰都县', value: 13923},
-	                    {name: '忠县', value: 159528},
-	                    {name: '潼南县', value: 55},
-	                    {name: '垫江县', value: 65},
-	                    {name: '巴南区', value: 30746},
-                    ]
+                    data: mapData
                 },
                 {
                     name: 'pm2.5',
@@ -958,7 +976,7 @@
 				function pieChart5Fn(daxue){
 					var pieChart5 = echarts.init(document.getElementById('piechart5'));
 					var pieOption5 = {
-						 color: ['#FFB50A','#8C04FA','#10BD8F','#10BD8F','#0DB7DB'],
+						color: ['#FFB50A','#8C04FA','#10BD8F','#10BD8F','#0DB7DB'],
 						tooltip: {
 				        trigger: 'item',
 				        formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -968,7 +986,7 @@
 				        itemWidth: 10,
 				        itemHeight: 10,
 				        borderRadius: 10,
-				         padding: [10, 20],
+				        padding: [10, 20],
 				        textStyle: {
 				        	color: '#fff',
 				        },
@@ -1008,7 +1026,167 @@
 					pieChart5.setOption(pieOption5);	
 				}
 					
-					
+				// 性别
+				function pieChart6Fn(sex){
+					var pieChart6 = echarts.init(document.getElementById('piechart6'));
+					var pieOption6 = {
+						color: ['#FFB50A','#8C04FA','#10BD8F','#10BD8F','#0DB7DB'],
+						tooltip: {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b}: {c} ({d}%)"
+				    },
+				    legend: {
+								bottom: '10',
+				        itemWidth: 10,
+				        itemHeight: 10,
+				        borderRadius: 10,
+				        padding: [10, 20],
+				        textStyle: {
+				        	color: '#fff',
+				        },
+				        data:['男','女']
+				    },
+				    series: [
+				        {
+				            name:'性别',
+				            type:'pie',
+				            radius: ['40%', '55%'],
+				            center: ['50%','40%'],
+				            label: {
+				            	position: 'outside',
+	                    formatter:  '{d}%',
+	                    color: '#fff',
+	                    align: 'left',
+				              verticalAlign: 'bottom'
+				            },
+				            labelLine: {
+				            	normal: {
+				                length: 0,
+				            		length2: 15,
+				                lineStyle: {
+		                    	color: '#fff',
+		                    },
+				              }
+				            	
+		                   
+				            },
+				            data:[
+				                {value:sex["nan"], name:'男'},
+				                {value:sex["nv"], name:'女'},
+				            ]
+				        }
+				    ]
+					}
+					pieChart6.setOption(pieOption6);	
+				}
+				
+				// 就业状态
+				function pieChart7Fn(getjob){
+					var pieChart7 = echarts.init(document.getElementById('piechart7'));
+					var pieOption7 = {
+						color: ['#FFB50A','#8C04FA','#10BD8F','#10BD8F','#0DB7DB'],
+						tooltip: {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b}: {c} ({d}%)"
+				    },
+				    legend: {
+								bottom: '10',
+				        itemWidth: 10,
+				        itemHeight: 10,
+				        borderRadius: 10,
+				        padding: [10, 20],
+				        textStyle: {
+				        	color: '#fff',
+				        },
+				        data:['失业中','已就业']
+				    },
+				    series: [
+				        {
+				            name:'就业状态',
+				            type:'pie',
+				            radius: ['40%', '55%'],
+				            center: ['50%','40%'],
+				            label: {
+				            	position: 'outside',
+	                    formatter:  '{d}%',
+	                    color: '#fff',
+	                    align: 'left',
+				              verticalAlign: 'bottom'
+				            },
+				            labelLine: {
+				            	normal: {
+				                length: 0,
+				            		length2: 15,
+				                lineStyle: {
+		                    	color: '#fff',
+		                    },
+				              }
+				            	
+		                   
+				            },
+				            data:[
+				                {value:getjob["shiye"], name:'失业中'},
+				                {value:getjob["jiuye"], name:'已就业'},
+				            ]
+				        }
+				    ]
+					}
+					pieChart7.setOption(pieOption7);	
+				}
+				
+				// 残疾
+				function pieChart8Fn(canji){
+					var pieChart8 = echarts.init(document.getElementById('piechart8'));
+					var pieOption8 = {
+						color: ['#FFB50A','#8C04FA','#10BD8F','#10BD8F','#0DB7DB'],
+						tooltip: {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b}: {c} ({d}%)"
+				    },
+				    legend: {
+								bottom: '10',
+				        itemWidth: 10,
+				        itemHeight: 10,
+				        borderRadius: 10,
+				        padding: [10, 20],
+				        textStyle: {
+				        	color: '#fff',
+				        },
+				        data:['45岁及以上','45岁以下']
+				    },
+				    series: [
+				        {
+				            name:'残疾',
+				            type:'pie',
+				            radius: ['40%', '55%'],
+				            center: ['50%','40%'],
+				            label: {
+				            	position: 'outside',
+	                    formatter:  '{d}%',
+	                    color: '#fff',
+	                    align: 'left',
+				              verticalAlign: 'bottom'
+				            },
+				            labelLine: {
+				            	normal: {
+				                length: 0,
+				            		length2: 15,
+				                lineStyle: {
+		                    	color: '#fff',
+		                    },
+				              }
+				            	
+		                   
+				            },
+				            data:[
+				                {value:canji["45gt"], name:'45岁及以上'},
+				                {value:canji["45lt"], name:'45岁以下'},
+				            ]
+				        }
+				    ]
+					}
+					pieChart8.setOption(pieOption8);	
+				}
 					
 					
 					
