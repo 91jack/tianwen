@@ -3,7 +3,7 @@ body {
 	background: #0C0026;
 	color: #fff;
 	font-size: 1.333333rem;
-	/*overflow: hidden;*/
+	overflow: hidden;
 }
 .container {
 	padding: 0 1.666666rem;
@@ -274,12 +274,12 @@ width: 40.583333rem;
 
 .footerchart {
 	clear: both;
-	width: 108rem;
 	overflow: hidden;
 }    
 .footer-left-item {
 	float: left;
-	width:;
+	width: 108rem;
+	overflow: hidden;
 }
 .footer-right-item {
 	width: 40.583333rem; 
@@ -288,6 +288,7 @@ width: 40.583333rem;
 
 .piechart-wrap {
 	width: 173.36rem;
+	transition: all 0.5s;
 }
 .piechart {
 	width: 21.6rem;
