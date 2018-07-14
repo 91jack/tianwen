@@ -7,6 +7,7 @@
   <title>大数据</title>
   <link rel="stylesheet" type="text/css" href="static/css/common.css"/>
   <link rel="stylesheet" type="text/css" href="static/css/index.css"/>
+  <link rel="stylesheet" type="text/css" href="static/layer/theme/default/layer.css"/>
 </head>
 	<body>
 		<!--顶部-->
@@ -59,23 +60,23 @@
 							</div>
 							
 							<ul class="item-level-two">
-								<li>
+								<li data-title="线上登记库" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/hrlibs.html">
 									<span>线上登记库</span>
 									<span><b class="xsdjk"></b>人</span>
 								</li>
-								<li>
+								<li data-title="失业人员" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/sylist.html">
 									<span>失业人员</span>
 									<span><b class="shiye"></b>人</span>
 								</li>
-								<li>
+								<li data-title="低保户" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/dibaohu.html">
 									<span>低保户</span>
 									<span><b class="dibao"></b>人</span>
 								</li>
-								<li>
+								<li data-title="高校毕业生" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/gxbys.html">
 									<span>高校毕业生</span>
 									<span><b class="gaoxiao"></b>人</span>
 								</li>
-								<li>
+								<li data-title="就业困难人员" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/kunnan.html">
 									<span>就业困难人员</span>
 									<span><b class="kunnan"></b>人</span>
 								</li>
@@ -89,15 +90,15 @@
 							</div>
 							
 							<ul class="item-level-two">
-								<li>
+								<li data-title="夜市摊位数" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/booth.html">
 									<span>夜市摊位数</span>
 									<span><b class="yeshi"></b>人</span>
 								</li>
-								<li>
+								<li data-title="创业一条街" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/shops.html">
 									<span>创业一条街</span>
 									<span><b class="chuangye"></b>人</span>
 								</li>
-								<li>
+								<li data-title="定向帮扶" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/jpdxbf.html">
 									<span>定向帮扶</span>
 									<span><b class="dxbf"></b>人</span>
 								</li>
@@ -111,11 +112,11 @@
 							</div>
 							
 							<ul class="item-level-two last">
-								<li>
+								<li data-title="线下成功就业人员" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/feedback.html">
 									<span>线下成功<br/>就业人员</span>
 									<span><b class="xianxia"></b>人</span>
 								</li>
-								<li>
+								<li data-title="线上自动配对成功人员" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/employed.html">
 									<span>线上自动配<br/>对成功人员</span>
 									<span><b class="xianshang"></b>人</span>
 								</li>
@@ -231,11 +232,12 @@
 		</div>
 	</div>
 	
-		
+	<!--弹窗-->
 		
 		
 	<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/common.js"></script>
 		<script type="text/javascript">
 			$(function(){
@@ -245,7 +247,7 @@
 					url:"http://tianwen.xnshequ.com/tongji_jiuye/cygj?jsoncallback=?",
 					dataType: "jsonp",
 					success: function(res){
-						console.log(res.data)
+						//console.log(res.data)
 						var str = '';
 						for(var i=0;i<res.data.length;i++){
 							str += "<li>"
@@ -261,7 +263,7 @@
 										var cp_name = res.data[i].cp_name
 									}
 									
-									console.log(cp_name)
+									//console.log(cp_name)
 							str	+= "<span>"+ cp_name + "</span>"
 									+ "<span>"+ res.data[i].num + "人</span>"
 									+ "</li>"
@@ -310,7 +312,7 @@
 					url:"http://tianwen.xnshequ.com/tongji_jiuye/sbd?jsoncallback=?",
 					dataType: "jsonp",
 					success: function(res){
-						console.log(res.data)
+						//console.log(res.data)
 						var fwrqStr = '';
 						for(var i=0;i<res.data.fwrq.length;i++){
 							fwrqStr += "<li>"
@@ -410,7 +412,7 @@
 					url:"http://tianwen.xnshequ.com/tongji_jiuye/jobcate?jsoncallback=?",
 					dataType: "jsonp",
 					success: function(res){
-						console.log(res.data)
+						//console.log(res.data)
 						xData = ['服务类','技术类','销售类','质检类','其他类']
 						barData = [res.data.fwl_count,res.data.jsl_count,res.data.xsl_count,res.data.zjl_count,res.data.qtl_count];
 						barChartFn(xData,barData)
@@ -423,7 +425,7 @@
 					url:"http://tianwen.xnshequ.com/tongji_jiuye/rtdynamic?jsoncallback=?",
 					dataType: "jsonp",
 					success: function(res){
-						console.log(res)
+						//console.log(res)
 						var str = '';
 						str += "	<li><span>用户名</span><span>时间</span></li>";
 						for(var i=0;i<res.data.users.length;i++){
@@ -450,7 +452,7 @@
 					url:"http://tianwen.xnshequ.com/tongji_jiuye/channel?jsoncallback=?",
 					dataType: "jsonp",
 					success: function(res){
-						console.log(res)
+						//console.log(res)
 						var xlineData = res.xaxis_data;
 						var linejobData = res.series_job;
 						var linehelpData = res.series_help;
@@ -466,7 +468,7 @@
 					url:"http://tianwen.xnshequ.com/tongji_jiuye/grid?jsoncallback=?",
 					dataType: "jsonp",
 					success: function(res){
-						console.log(res)
+						//console.log(res)
 						pieChart1Fn(res.data.age);
 						pieChart2Fn(res.data.education);
 						pieChart3Fn(res.data.zzmm);
@@ -512,11 +514,13 @@
 					url:"http://tianwen.xnshequ.com/tongji_jiuye/map?jsoncallback=?",
 					dataType: "jsonp",
 					success: function(res){
+						//console.log(res)
 						var mapData = [];
-						for(var i=0;i<res.data.length;i++){
-							mapData.push({name:res.data[i].name,value:res.data[i].hj_num*1,num:res.data[i].num*1})
+						var list = res.data.list;
+						for(var i=0;i<list.length;i++){
+							mapData.push({name:list[i].name,value:list[i].hj_num*1,num:list[i].num*1})
 						}
-						
+						//console.log(mapData)
 						var mapChart = echarts.init(document.getElementById('mapchart'));
 		        //绘制重庆地图
 		        $.getJSON('./static/js/cq.json', function(data){
@@ -534,13 +538,14 @@
 				           	backgroundColor: '#0C0026',
 				            tooltip: {
 				                trigger: 'item',
+				                padding: 10,
 				                formatter: function(params){
-				                	console.log(params)
+				                	//console.log(params)
 				                	return  params.name + '<br/>' +  '户籍所在地 ： ' + params.value+ '人' + '<br/>现居地 ： ' + params.data.num + '人';
 				                }
 				            },
 				            visualMap: {
-//						            min: 0,
+						            min: 0,
 //						            max: 35000,
 //						            text:['High','Low'],
 						            realtime: false,
@@ -1246,6 +1251,22 @@
 				}
 				
 			})
+			
+			// 弹窗
+			$('.item-level-two li').each(function(){
+				$(this).click(function(){
+					layer.open({
+					  type: 2,
+					  title: $(this).attr('data-title'),
+					  shadeClose: true,
+					  shade: 0.8,
+					  offset: '10%',
+					  area: ['80%', '80%'],
+					  content: $(this).attr('data-href') //iframe的url
+					}); 
+				})
+			})
+			
 			
 		</script>
 	</body>
