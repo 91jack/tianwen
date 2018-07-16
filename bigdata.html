@@ -56,7 +56,7 @@
 						<div class="item-level">
 							<div class="item-level-one">
 								<span>服务人群</span>
-								<span><b class="fwrq"></b>人</span>
+								<span><ol class="fwrq"></ol><em>人</em></span>
 							</div>
 							
 							<ul class="item-level-two">
@@ -86,7 +86,7 @@
 						<div class="item-level">
 							<div class="item-level-one">
 								<span>公益性岗位</span>
-								<span><b class="gongyi"></b>人</span>
+								<span><ol class="gongyi"></ol><em>人</em></span>
 							</div>
 							
 							<ul class="item-level-two">
@@ -108,7 +108,7 @@
 						<div class="item-level">
 							<div class="item-level-one">
 								<span>成功服务量</span>
-								<span><b class="chenggong"></b>人</span>
+								<span><ol class="chenggong"></ol><em>人</em></span>
 							</div>
 							
 							<ul class="item-level-two last">
@@ -278,7 +278,7 @@
 				// 10S钟刷新
 				setInterval(function(){
 					tongjiDom()
-				},10000)
+				},5000)
 				
 				function tongjiDom(){
 					$.ajax({
@@ -288,7 +288,10 @@
 						success: function(res){
 							// 服务人群
 							var fwrq = res.data.fwrq;
-							$('.fwrq').text(fwrq.xsdjk*1 + fwrq.shiye*1 + fwrq.dibao*1 + fwrq.gaoxiao*1 + fwrq.kunnan*1);
+							//console.log($('.fwrq').text());
+							var oldNum = $('.fwrq .old').text();
+							//console.log(oldNum)
+							$('.fwrq').html(updateNum(oldNum,fwrq.fwrq));
 							$('.xsdjk').text(fwrq.xsdjk);
 							$('.shiye').text(fwrq.shiye);
 							$('.dibao').text(fwrq.dibao);
@@ -297,14 +300,16 @@
 							
 							// 公益性岗位
 							var gongyi = res.data.gongyi;
-							$('.gongyi').text(gongyi.yeshi*1 + gongyi.chuangye*1 + gongyi.dxbf*1);
+							var oldNum = $('.gongyi .old').text();
+							$('.gongyi').html(updateNum(oldNum,gongyi.yeshi*1 + gongyi.chuangye*1 + gongyi.dxbf*1));
 							$('.yeshi').text(gongyi.yeshi);
 							$('.chuangye').text(gongyi.chuangye);
 							$('.dxbf').text(gongyi.dxbf);
 							
 							// 成功服务量
 							var chenggong = res.data.chenggong;
-							$('.chenggong').text(chenggong.xianxia*1 + chenggong.xianshang*1);
+							var oldNum = $('.chenggong .old').text();
+							$('.chenggong').html(updateNum(oldNum,chenggong.xianxia*1 + chenggong.xianshang*1));
 							$('.xianxia').text(chenggong.xianxia);
 							$('.xianshang').text(chenggong.xianshang);
 						}
@@ -438,7 +443,7 @@
 						url:"http://tianwen.xnshequ.com/tongji_jiuye/rtdynamic?jsoncallback=?",
 						dataType: "jsonp",
 						success: function(res){
-							console.log(res)
+							//console.log(res)
 							var str = '';
 							str += "	<li><span>用户名</span><span>时间</span></li>";
 							for(var i=0;i<res.data.users.length;i++){
@@ -564,16 +569,14 @@
 				            visualMap: {
 						            min: 0,
 						            max: 3500,
-						            text:['High','Low'],
+						            text:['高','低'],
 						            realtime: false,
 						            calculable: true,
 						            itemWidth: 10,
 						            inRange: {
-						                color: ['#52BCF8','#2751e3',]
+						                color: ['#2751e3' ,'#52b2fe','#35a4fe','#52b2fe']
+						               // color: ['#52b2fe','#35a4fe','#52b2fe','#2751e3']
 						            },
-//						              inRange: {
-//							                color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
-//							            },
 						            textStyle: {
 						            	color: '#fff'
 						            }
@@ -1291,8 +1294,8 @@ function formatDateTime(inputTime) {
     second = second < 10 ? ('0' + second) : second; 
     return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;  
 }
-
-
+    
+    
 			// 弹窗
 			$('.item-level-two li').each(function(){
 				$(this).click(function(){
@@ -1308,6 +1311,40 @@ function formatDateTime(inputTime) {
 				})
 			})
 
+// 数字滚动增加特效
+function updateNum(oldNum,newNum){
+			//console.log(oldNum,newNum)
+			// 将数字转为字符串
+			var oldNum = oldNum.toString();
+			var newNum = newNum.toString();
+			
+			numberHTML = '';
+		//	console.log(newNum.length)
+			for(var i = newNum.length - 1; i >= 0; i--) {
+				if(oldNum[i] !== newNum[i]) {
+					if(oldNum[i] == undefined || oldNum[i] == null || oldNum[i] == "") {
+						if(newNum[i] != ",")
+							numberHTML = "<li class=\"group active\">" +
+							"<span class=\"old\">0</span>" +
+							"<span class=\"new\">" + newNum[i] + "</span></li>" + numberHTML;
+						else
+							numberHTML = "<li class=\"group active\">" +
+							"<span class=\"old\">,</span>" +
+							"<span class=\"new\">" + newNum[i] + "</span></li>" + numberHTML;
+					} else
+						numberHTML = "<li class=\"group active\">" +
+						"<span class=\"old\">" + oldNum[i] + "</span>" +
+						"<span class=\"new\">" + newNum[i] + "</span></li>" + numberHTML;
+				} else {
+					numberHTML = "<li class=\"group\">" +
+						"<span class=\"old\">" + oldNum[i] + "</span>" +
+						"<span class=\"new\">" + newNum[i] + "</span></li>" + numberHTML;
+				}
+			
+			}
+			//console.log(numberHTML);//return numberHTML;
+			return numberHTML;
+		}
 		</script>
 	</body>
 </html>

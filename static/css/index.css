@@ -153,14 +153,23 @@ body {
 	
 }
 .item-level-one span:last-child {
+	display: block;
+	width: 100%;
 	font-size: 1.5rem;
 	font-weight: bold;
 	color: #50D6F1;
+	text-align: center;
+	height: 3.8rem;
+	line-height: 3.8rem;
+	position: relative;
 }
-.item-level-one span:last-child b{
+.item-level-one span:last-child em {
+	position: absolute;
+	bottom:-1rem;
+	/*right: 5px;*/
+}
+.item-level-one span:last-child ol li span{
 	font-size: 3.833333rem;
-	/*font-weight: bold;
-	font-weight: normal;*/
 	color: #50D6F1;
 }
 
@@ -217,6 +226,37 @@ body {
 	line-height: 2.5rem;
 }
 
+ol {
+	display: inline-block;
+	text-align: center;
+	margin: .5rem;
+}
+ol li {
+	float:left;
+	list-style: none;
+	height:3.8rem;
+    line-height: 3.8rem;
+    display: inline-block;
+    overflow: hidden;
+    text-align: center;
+}
+ol li span {
+	display: block;
+	transform: translateY(0%);
+}
+
+ol li.active span {
+    animation: move 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes move {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
 
 
 
