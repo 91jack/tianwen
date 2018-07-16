@@ -426,7 +426,6 @@
 				});
 
 				//就业动车实时动态
-<<<<<<< HEAD
 				jydcDom()
 				
 				// 5S钟刷新1次
@@ -455,21 +454,6 @@
 										+ "<span>"+ nick_name + "</span>"
 										+ "<span>"+ time + "</span>"
 										+ "</li>"
-=======
-				$.ajax({
-					type:"get",
-					url:"http://tianwen.xnshequ.com/tongji_jiuye/rtdynamic?jsoncallback=?",
-					dataType: "jsonp",
-					success: function(res){
-						//console.log(res)
-						var str = '';
-						str += "	<li><span>用户名</span><span>时间</span></li>";
-						for(var i=0;i<res.data.users.length;i++){
-							if(res.data.users[i].nick_name.length > 10){
-								var nick_name = res.data.users[i].nick_name.substr(0,10)+'...'
-							}else{
-								var nick_name = res.data.users[i].nick_name
->>>>>>> eb44d130d772e8962f96ca1d1664dfaed8feb7eb
 							}
 	
 							$('.section3-list').html(str);
@@ -548,12 +532,9 @@
 					success: function(res){
 						//console.log(res)
 						var mapData = [];
-<<<<<<< HEAD
+
 						var list = res.data.list
-						console.log(list)
-=======
-						var list = res.data.list;
->>>>>>> eb44d130d772e8962f96ca1d1664dfaed8feb7eb
+
 						for(var i=0;i<list.length;i++){
 							mapData.push({name:list[i].name,value:list[i].hj_num*1,num:list[i].num*1})
 						}
@@ -577,20 +558,22 @@
 				                trigger: 'item',
 				                padding: 10,
 				                formatter: function(params){
-				                	//console.log(params)
 				                	return  params.name + '<br/>' +  '户籍所在地 ： ' + params.value+ '人' + '<br/>现居地 ： ' + params.data.num + '人';
 				                }
 				            },
 				            visualMap: {
 						            min: 0,
-//						            max: 35000,
-//						            text:['High','Low'],
+						            max: 3500,
+						            text:['High','Low'],
 						            realtime: false,
 						            calculable: true,
 						            itemWidth: 10,
 						            inRange: {
 						                color: ['#52BCF8','#2751e3',]
 						            },
+//						              inRange: {
+//							                color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+//							            },
 						            textStyle: {
 						            	color: '#fff'
 						            }
@@ -1289,7 +1272,7 @@
 				
 			})
 			
-<<<<<<< HEAD
+
 			
 			
 function formatDateTime(inputTime) {  
@@ -1309,10 +1292,7 @@ function formatDateTime(inputTime) {
     return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;  
 }
 
-//			setInterval(function(){
-//				window.location.reload()
-//			},10000)
-=======
+
 			// 弹窗
 			$('.item-level-two li').each(function(){
 				$(this).click(function(){
@@ -1327,9 +1307,7 @@ function formatDateTime(inputTime) {
 					}); 
 				})
 			})
-			
-			
->>>>>>> eb44d130d772e8962f96ca1d1664dfaed8feb7eb
+
 		</script>
 	</body>
 </html>
