@@ -516,19 +516,19 @@
 				
 					// 重庆地图
 				var res = [
-            {name:'广场路（宝城中学）',value:[105.598033,29.415024,100]},
-            {name:'兴荣路（行政服务中心）',value:[105.618136,29.420932,200]},
-            {name:'向阳路（中华奥城）',value:[105.621269,29.423722,102]},
-            {name:'迎宾大道川三文曲苑对面1',value:[105.616699,29.412513,200]},
-            {name:'东益当街',value:[105.602689,29.410201,20]},
-            {name:'昌龙大道与瑞尔支路路口',value:[105.630171,29.414218,10]},
-            {name:'荣滨北路（拓新红城龙吟门）',value:[105.593646,29.419493,50]},
-            {name:'北环二路城市花园1',value:[105.593276,29.404811,200]},
-            {name:'昌州大道(69队转盘)',value:[105.623243,29.419482,10]},
-            {name:'广场路(玉屏小学)',value:[105.601243,29.41243,300]},
-            {name:'中科路与昌州大道路口',value:[105.588394,29.407483,20]}
+            {name:'广场路（宝城中学）',value:[105.598033,29.415024,1000]},
+            {name:'兴荣路（行政服务中心）',value:[105.618136,29.420932,2000]},
+            {name:'向阳路（中华奥城）',value:[105.621269,29.423722,1002]},
+            {name:'迎宾大道川三文曲苑对面1',value:[105.616699,29.412513,2000]},
+            {name:'东益当街',value:[105.602689,29.410201,200]},
+            {name:'昌龙大道与瑞尔支路路口',value:[105.630171,29.414218,100]},
+            {name:'荣滨北路（拓新红城龙吟门）',value:[105.593646,29.419493,500]},
+            {name:'北环二路城市花园1',value:[105.593276,29.404811,2000]},
+            {name:'昌州大道(69队转盘)',value:[105.623243,29.419482,100]},
+            {name:'广场路(玉屏小学)',value:[105.601243,29.41243,3000]},
+            {name:'中科路与昌州大道路口',value:[105.588394,29.407483,200]}
         ]
-				
+				console.log(res)
 				// 重庆区域地图
 				$.ajax({
 					type:"get",
@@ -581,49 +581,74 @@
 						            	color: '#fff'
 						            }
 						        },
-						        series:[{
-		                    type: 'map',
-		                    mapType: 'chongqing',
-		                    roam: true,
-		                    nameMap:{
-		                        'cq':'重庆'
-		                    },
-		                    zoom: 1.2,
-		                    itemStyle: {
-		                        normal: {
-		                            areaColor: '#52b2fe',
-		                            borderColor: '#6ad7ff'
-		                        },
-		                        emphasis: {
-		                            areaColor: 'darkorange'
-		                        }
-		                    },
-		                    data: mapData
-		                	},
+						        geo: {
+						        	map: 'chongqing',
+						        	label: {
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
+	                    },
+	                    zoom: 1.2,
+	                    roam: false,
+	                    itemStyle: {
+	                        normal: {
+	                            borderColor: 'rgba(100,149,237,1)',
+	                            borderWidth: 1.5,
+	                            areaColor: '#1b1b1b'
+	                        },
+	                        emphasis: {
+	                            areaColor: 'darkorange'
+	                        }
+	                    },
+	                    tooltip: {
+	                        trigger: 'item'
+	                    }
+						        },
+						        series:[
+//						        	{
+//		                    type: 'map',
+//		                    mapType: 'chongqing',
+//		                    roam: true,
+//		                    nameMap:{
+//		                        'cq':'重庆'
+//		                    },
+//		                    zoom: 1.2,
+//		                    itemStyle: {
+//		                        normal: {
+//		                            areaColor: '#52b2fe',
+//		                            borderColor: '#6ad7ff'
+//		                        },
+//		                        emphasis: {
+//		                            areaColor: 'darkorange'
+//		                        }
+//		                    },
+//		                    data: mapData,
+//		                    zlevel: 0,
+//		                	},
 		               		{
-		                    name: 'pm2.5',
-		                    type: 'scatter',
-		                    coordinateSystem: 'geo',
-												data: res,
-		                    symbolSize: function (val) {
-		                      return val[2]/80;
-		                    },
-		                    label: {
-		                        normal: {
-		                            formatter: '{b}',
-		                            position: 'right',
-		                            show: false
-		                        },
-		                        emphasis: {
-		                            show: true
-		                        }
-		                    },
-		                    itemStyle: {
-		                        normal: {
-		                            color: 'red'
-		                        }
-		                    }
-		                 }]
+	                        name: '强',
+	                        type: 'scatter',
+	                        coordinateSystem: 'geo',
+	                        data: res,
+	                        hoverAnimation: true,
+	                        symbolSize: function (val) {
+	                        		console.log(val)
+	                            return 10
+	                        },
+	                        itemStyle: {
+	                            normal: {
+	                                color: '#F6612A',
+	                                shadowBlur: 10,
+	                                shadowColor: '#f6a182'
+	                            }
+	                        },
+	                        tooltip: {},
+	                        zlevel: 3
+	                    },
+		               		]
 				        })
 		          })
 					}
