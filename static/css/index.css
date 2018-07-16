@@ -181,8 +181,11 @@ body {
 	clear: both;
 	border-top: 1px solid #0c0026;
 	overflow: hidden;
+	cursor: pointer;
 }
-
+.item-level-two li:hover {
+	background: #E58B26;
+}
 .item-level-two li:before,
 .item-level-two li:after {
 	height: 0,
