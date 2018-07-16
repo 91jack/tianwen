@@ -303,10 +303,12 @@ width: 40.583333rem;
 	text-align: center;
 	background: none!important;
 	color:#fff!important;
+	transition: all .2s;
 }
 
 .section3-tab-content ul{
 	display: none;
+	transition: all .2s;
 }
 .section3-tab-content ul.active {
 	display: block;
