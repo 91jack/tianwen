@@ -505,81 +505,97 @@
 					}
 				});
 
-
+				// 重庆地图
+				var res = [
+					{
+						name: '广场路（宝城中学）',
+						value: [105.598033, 29.415024, 1000]
+					},
+					{
+						name: '兴荣路（行政服务中心）',
+						value: [105.618136, 29.420932, 2000]
+					},
+					{
+						name: '向阳路（中华奥城）',
+						value: [105.621269, 29.423722, 1002]
+					},
+					{
+						name: '迎宾大道川三文曲苑对面1',
+						value: [105.616699, 29.412513, 2000]
+					},
+					{
+						name: '东益当街',
+						value: [105.602689, 29.410201, 200]
+					},
+					{
+						name: '昌龙大道与瑞尔支路路口',
+						value: [105.630171, 29.414218, 100]
+					},
+					{
+						name: '荣滨北路（拓新红城龙吟门）',
+						value: [105.593646, 29.419493, 500]
+					},
+					{
+						name: '北环二路城市花园1',
+						value: [105.593276, 29.404811, 2000]
+					},
+					{
+						name: '昌州大道(69队转盘)',
+						value: [105.623243, 29.419482, 100]
+					},
+					{
+						name: '广场路(玉屏小学)',
+						value: [105.601243, 29.41243, 3000]
+					},
+					{
+						name: '中科路与昌州大道路口',
+						value: [105.588394, 29.407483, 200]
+					}
+				]
+				
+				console.log(res)
+				
 				// 重庆区域地图
-				//绘制重庆地图
-				
-				
-				mapFn()
-				
-				setInterval(function(){
-					mapFn();
-				},15000)
-				setInterval(function(){
-					mapScatterFn();
-				},5000)
-				
-				
-				var mapChart = echarts.init(document.getElementById('mapchart'));
-				function mapFn(){
-					$.getJSON('./static/js/cq.json', function(data) {
-						d = [];
-						for(var i = 0; i < data.features.length; i++) {
-							d.push({
-								name: data.features[i].properties.name
+				$.ajax({
+					type: "get",
+					url: "http://tianwen.xnshequ.com/tongji_jiuye/map?jsoncallback=?",
+					dataType: "jsonp",
+					success: function(res) {
+						//console.log(res)
+						var mapData = [];
+
+						var list = res.data.list
+
+						for(var i = 0; i < list.length; i++) {
+							mapData.push({
+								name: list[i].name,
+								value: list[i].hj_num * 1,
+								num: list[i].num * 1
 							})
 						}
-						mapdata = d;
-						//注册地图
-						echarts.registerMap('chongqing', data);
-	
-						mapChart.setOption(option = {
-							backgroundColor: '#0C0026',
-							tooltip: {
-								trigger: 'item',
-								padding: 10,
-								formatter: function(params) {
-									return params.name + '<br/>' + '户籍所在地 ： ' + params.value + '人' + '<br/>现居地 ： ' + params.data.num + '人';
-								}
-							},
-							
-							geo: {
-								map: 'chongqing',
-								label: {
-									emphasis: {
-										show: true,
-										textStyle: {
-											color: '#fff'
-										}
-									}
-								},
-								zoom: 1.2,
-								roam: false,
-							},
-						
-						})
-					})
-				
-					$.ajax({
-						type: "get",
-						url: "http://tianwen.xnshequ.com/tongji_jiuye/map?jsoncallback=?",
-						dataType: "jsonp",
-						success: function(res) {
-							//console.log(res)
-							var mapData = [];
-	
-							var list = res.data.list
-	
-							for(var i = 0; i < list.length; i++) {
-								mapData.push({
-									name: list[i].name,
-									value: list[i].hj_num * 1,
-									num: list[i].num * 1
+						//console.log(mapData)
+						var mapChart = echarts.init(document.getElementById('mapchart'));
+						//绘制重庆地图
+						$.getJSON('./static/js/cq.json', function(data) {
+							d = [];
+							for(var i = 0; i < data.features.length; i++) {
+								d.push({
+									name: data.features[i].properties.name
 								})
 							}
-							
-							option = {
-								color:'red',
+							mapdata = d;
+							//注册地图
+							echarts.registerMap('chongqing', data);
+
+							mapChart.setOption(option = {
+								backgroundColor: '#0C0026',
+								tooltip: {
+									trigger: 'item',
+									padding: 10,
+									formatter: function(params) {
+										return params.name + '<br/>' + '户籍所在地 ： ' + params.value + '人' + '<br/>现居地 ： ' + params.data.num + '人';
+									}
+								},
 								visualMap: {
 									min: 0,
 									max: 3500,
@@ -589,104 +605,132 @@
 									itemWidth: 10,
 									inRange: {
 										color: ['#2751e3', '#52b2fe', '#35a4fe', '#52b2fe']
-										//color: ['#52b2fe','#35a4fe','#52b2fe','#2751e3']
-										//color: ['#50a3ba', '#eac736', '#d94e5d']
+										// color: ['#52b2fe','#35a4fe','#52b2fe','#2751e3']
 									},
 									textStyle: {
 										color: '#fff'
 									}
 								},
-								series:[{
-						                    type: 'map',
-						                    mapType: 'chongqing',
-						                    roam: false,
-						                    nameMap:{
-						                        'cq':'重庆'
-						                    },
-						                    zoom: 1.2,
-						                    itemStyle: {
-						                        normal: {
-						                            areaColor: '#52b2fe',
-						                            borderColor: '#6ad7ff'
-						                        },
-						                        emphasis: {
-						                            areaColor: 'darkorange'
-						                        }
-						                    },
-						                    data: mapData,
-						                    zlevel: 0,
-						               }]
-							} 
-							mapChart.setOption(option)
-						}
-					});
-				}
-			
-				function mapScatterFn(){
-					option.series[1] = {
-								name: '用户坐标',
-								type: 'effectScatter',
-								coordinateSystem: 'geo',
-								data: [
-										{
-											name: '广场路（宝城中学）',
-											value: [106.598033, 29.415024,500]
-										},
-										{
-											name: '荣滨北路（拓新红城龙吟门）',
-											value: [105.593646, 29.419493,50]
-										},
-										{
-											name: '北环二路城市花园1',
-											value: [109.593276, 29.404811,5000]
-										},
-										{
-											name: '昌州大道(69队转盘)',
-											value: [105.623243, 29.419482,5000]
-										},
-										{
-											name: '广场路(玉屏小学)',
-											value: [107.601243, 29.41243,5000]
-										},
-										{
-											name: '中科路与昌州大道路口',
-											value: [108.588394, 29.407483,5000]
+								geo: {
+									map: 'chongqing',
+									label: {
+										emphasis: {
+											show: true,
+											textStyle: {
+												color: '#fff'
+											}
 										}
-									],
-								  	showEffectOn: 'render',
-						            rippleEffect: {
-						                brushType: 'stroke'
-						            },
-						            //symbol: 'arrow',
-						            symbolSize: 10,
-						            hoverAnimation: true,
-						            label: {
-						                normal: {
-						                    formatter: '{b}',
-						                    position: 'right',
-						                    //show: true
-						                }
-						            },
-						          
-						            tooltip: {
-						            	trigger: 'item',
-						            	formatter: '{b}'
-						            },
-						            itemStyle: {
-						                normal: {
-						                    color: 'red',
-						                    shadowBlur: 10,
-						                    shadowColor: '#333'
-						                }
-						            },
-						            zlevel: 10,
-						            z: 100
-								}
-					mapChart.setOption(option)
-				}
-
-				
-				
+									},
+									zoom: 1.2,
+									roam: false,
+									itemStyle: {
+										normal: {
+											borderColor: 'rgba(100,149,237,1)',
+											borderWidth: 1.5,
+											areaColor: '#1b1b1b'
+										},
+										emphasis: {
+											areaColor: 'darkorange'
+										}
+									},
+									tooltip: {
+										trigger: 'item'
+									}
+								},
+								series: [
+									{
+					                    type: 'map',
+					                    mapType: 'chongqing',
+					                    roam: true,
+					                    nameMap:{
+					                        'cq':'重庆'
+					                    },
+					                    zoom: 1.2,
+					                    itemStyle: {
+					                        normal: {
+					                            areaColor: '#52b2fe',
+					                            borderColor: '#6ad7ff'
+					                        },
+					                        emphasis: {
+					                            areaColor: 'darkorange'
+					                        }
+					                    },
+					                    data: mapData,
+					                    zlevel: 0,
+					                },
+									{
+										name: '强',
+										type: 'effectScatter',
+										coordinateSystem: 'geo',
+										data: [
+												{
+													name: '广场路（宝城中学）',
+													value: [106.598033, 29.415024]
+												},
+												{
+													name: '兴荣路（行政服务中心）',
+													value: [105.618136, 29.420932]
+												},
+												{
+													name: '向阳路（中华奥城）',
+													value: [105.621269, 29.423722]
+												},
+												{
+													name: '迎宾大道川三文曲苑对面1',
+													value: [105.616699, 29.412513]
+												},
+												{
+													name: '东益当街',
+													value: [105.602689, 29.410201]
+												},
+												{
+													name: '昌龙大道与瑞尔支路路口',
+													value: [105.630171, 29.414218]
+												},
+												{
+													name: '荣滨北路（拓新红城龙吟门）',
+													value: [105.593646, 29.419493]
+												},
+												{
+													name: '北环二路城市花园1',
+													value: [109.593276, 29.404811]
+												},
+												{
+													name: '昌州大道(69队转盘)',
+													value: [105.623243, 29.419482]
+												},
+												{
+													name: '广场路(玉屏小学)',
+													value: [107.601243, 29.41243]
+												},
+												{
+													name: '中科路与昌州大道路口',
+													value: [108.588394, 29.407483]
+												}
+											],
+										hoverAnimation: true,
+										symbolSize: function(val) {
+											console.log(val)
+											return 10
+										},
+										itemStyle: {
+											 normal: {
+							                    color: '#f4e925',
+							                    shadowBlur: 10,
+							                    shadowColor: '#333'
+							                }
+										},
+										tooltip: {
+											trigger: 'item',
+											formatter: '{b}'
+										},
+										zlevel: 3
+									},
+								]
+							})
+						})
+					}
+				});
 
 				// 柱状图
 				// 基于准备好的dom，初始化echarts实例
