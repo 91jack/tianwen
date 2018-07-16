@@ -272,36 +272,42 @@
 				});
 				
 				// 服务人群，公益性岗位，成功服务量
-				$.ajax({
-					type:"get",
-					url:"http://tianwen.xnshequ.com/tongji_jiuye/t3?jsoncallback=?",
-					dataType: "jsonp",
-					success: function(res){
-						// 服务人群
-						var fwrq = res.data.fwrq;
-						$('.fwrq').text(fwrq.xsdjk*1 + fwrq.shiye*1 + fwrq.dibao*1 + fwrq.gaoxiao*1 + fwrq.kunnan*1);
-						$('.xsdjk').text(fwrq.xsdjk);
-						$('.shiye').text(fwrq.shiye);
-						$('.dibao').text(fwrq.dibao);
-						$('.gaoxiao').text(fwrq.gaoxiao);
-						$('.kunnan').text(fwrq.kunnan);
-						
-						// 公益性岗位
-						var gongyi = res.data.gongyi;
-						$('.gongyi').text(gongyi.yeshi*1 + gongyi.chuangye*1 + gongyi.dxbf*1);
-						$('.yeshi').text(gongyi.yeshi);
-						$('.chuangye').text(gongyi.chuangye);
-						$('.dxbf').text(gongyi.dxbf);
-						
-						// 成功服务量
-						var chenggong = res.data.chenggong;
-						$('.chenggong').text(chenggong.xianxia*1 + chenggong.xianshang*1);
-						$('.xianxia').text(chenggong.xianxia);
-						$('.xianshang').text(chenggong.xianshang);
-						
-						
-					}
-				});
+				tongjiDom()
+				// 10S钟刷新
+				setInterval(function(){
+					tongjiDom()
+				},10000)
+				
+				function tongjiDom(){
+					$.ajax({
+						type:"get",
+						url:"http://tianwen.xnshequ.com/tongji_jiuye/t3?jsoncallback=?",
+						dataType: "jsonp",
+						success: function(res){
+							// 服务人群
+							var fwrq = res.data.fwrq;
+							$('.fwrq').text(fwrq.xsdjk*1 + fwrq.shiye*1 + fwrq.dibao*1 + fwrq.gaoxiao*1 + fwrq.kunnan*1);
+							$('.xsdjk').text(fwrq.xsdjk);
+							$('.shiye').text(fwrq.shiye);
+							$('.dibao').text(fwrq.dibao);
+							$('.gaoxiao').text(fwrq.gaoxiao);
+							$('.kunnan').text(fwrq.kunnan);
+							
+							// 公益性岗位
+							var gongyi = res.data.gongyi;
+							$('.gongyi').text(gongyi.yeshi*1 + gongyi.chuangye*1 + gongyi.dxbf*1);
+							$('.yeshi').text(gongyi.yeshi);
+							$('.chuangye').text(gongyi.chuangye);
+							$('.dxbf').text(gongyi.dxbf);
+							
+							// 成功服务量
+							var chenggong = res.data.chenggong;
+							$('.chenggong').text(chenggong.xianxia*1 + chenggong.xianshang*1);
+							$('.xianxia').text(chenggong.xianxia);
+							$('.xianshang').text(chenggong.xianshang);
+						}
+					});
+				}
 				
 				
 				// 就业动车社会效益展示
@@ -418,31 +424,41 @@
 				});
 
 				//就业动车实时动态
-				$.ajax({
-					type:"get",
-					url:"http://tianwen.xnshequ.com/tongji_jiuye/rtdynamic?jsoncallback=?",
-					dataType: "jsonp",
-					success: function(res){
-						console.log(res)
-						var str = '';
-						str += "	<li><span>用户名</span><span>时间</span></li>";
-						for(var i=0;i<res.data.users.length;i++){
-							if(res.data.users[i].nick_name.length > 10){
-								var nick_name = res.data.users[i].nick_name.substr(0,10)+'...'
-							}else{
-								var nick_name = res.data.users[i].nick_name
+				jydcDom()
+				
+				// 5S钟刷新1次
+				setInterval(function(){
+					jydcDom()
+				},5000)
+				function jydcDom(){
+					$.ajax({
+						type:"get",
+						url:"http://tianwen.xnshequ.com/tongji_jiuye/rtdynamic?jsoncallback=?",
+						dataType: "jsonp",
+						success: function(res){
+							console.log(res)
+							var str = '';
+							str += "	<li><span>用户名</span><span>时间</span></li>";
+							for(var i=0;i<res.data.users.length;i++){
+								if(res.data.users[i].nick_name.length > 10){
+									var nick_name = res.data.users[i].nick_name.substr(0,10)+'...'
+								}else{
+									var nick_name = res.data.users[i].nick_name
+								}
+								
+								var time = formatDateTime(res.data.users[i].last_time*1000)
+								
+								str += "<li>"
+										+ "<span>"+ nick_name + "</span>"
+										+ "<span>"+ time + "</span>"
+										+ "</li>"
 							}
-							
-							str += "<li>"
-									+ "<span>"+ nick_name + "</span>"
-									+ "<span>"+ res.data.users[i].last_time + "</span>"
-									+ "</li>"
+	
+							$('.section3-list').html(str);
+								
 						}
-
-						$('.section3-list').append(str);
-							
-					}
-				});
+					});
+				}
 				
 				//就业动车关注度
 				$.ajax({
@@ -513,8 +529,10 @@
 					dataType: "jsonp",
 					success: function(res){
 						var mapData = [];
-						for(var i=0;i<res.data.length;i++){
-							mapData.push({name:res.data[i].name,value:res.data[i].hj_num*1,num:res.data[i].num*1})
+						var list = res.data.list
+						console.log(list)
+						for(var i=0;i<list.length;i++){
+							mapData.push({name:list[i].name,value:list[i].hj_num*1,num:list[i].num*1})
 						}
 						
 						var mapChart = echarts.init(document.getElementById('mapchart'));
@@ -1247,6 +1265,28 @@
 				
 			})
 			
+			
+			
+function formatDateTime(inputTime) {  
+    var date = new Date(inputTime);
+    
+    var y = date.getFullYear();  
+    var m = date.getMonth() + 1;  
+    m = m < 10 ? ('0' + m) : m;  
+    var d = date.getDate();  
+    d = d < 10 ? ('0' + d) : d;  
+    var h = date.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    minute = minute < 10 ? ('0' + minute) : minute;  
+    second = second < 10 ? ('0' + second) : second; 
+    return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;  
+}
+
+//			setInterval(function(){
+//				window.location.reload()
+//			},10000)
 		</script>
 	</body>
 </html>
