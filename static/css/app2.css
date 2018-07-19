@@ -1,0 +1,220 @@
+html, body, div, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, ul, li, fieldset, form, label, input, legend, table, caption, tbody, tfoot, thead, tr, th, td, textarea, article, aside, audio, canvas, figure, footer, header, mark, menu, nav, section, time, video { margin: 0; padding: 0; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal }
+article, aside, dialog, figure, footer, header, hgroup, nav, section, blockquote { display: block; }
+ul, ol { list-style: none; }
+img { border: 0 none; vertical-align: top; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+strong, em, i { font-style: normal; font-weight: normal; }
+ins { text-decoration: underline; }
+del { text-decoration: line-through; }
+mark { background: none; }
+input::-ms-clear { display: none !important; }
+body { font: 12px/1.5 \5FAE\8F6F\96C5\9ED1, \5B8B\4F53, "Hiragino Sans GB", STHeiti, "WenQuanYi Micro Hei", "Droid Sans Fallback", SimSun, sans-serif; background: #fff; }
+a { text-decoration: none; color: #fff; }
+ul,ol,li{
+	margin: 0;
+	padding: 0;
+}
+
+/*首页*/
+#index-page {
+	width: 100%;
+	background:#ccc url(../images/index_bg.png) no-repeat;
+	background-size: cover;
+	color: #fff;
+}
+
+.slgon {
+	width: 26.25rem;
+	height: 3.65rem;
+	padding-top: 4rem;
+	padding-left: 5rem;
+	padding-bottom: 2.6rem;
+}
+.slgon1 {
+	width:11.8rem;
+	height: 1.6rem;
+	background: url(../images/index_slgon1.png) no-repeat;
+	background-size: cover;
+	margin-bottom: 0.5rem;
+}
+.slgon2 {
+	width: 15.75rem;
+	height: 1.6rem;
+	background: url(../images/index_slgon2.png) no-repeat;
+	background-size: cover;
+	
+}
+.index-title {
+	width: 100%;
+	height: 4.8rem;
+	text-align: center;
+	position: relative;
+	margin-bottom: 3rem;
+}
+.index-title img{
+	display: block;
+	width:73.45rem;
+	height: 4.8rem;
+	position: absolute;
+	left:11.3rem;
+}
+
+.index-content {	
+	width: 65rem;
+	position: absolute;
+	left:15.55rem;
+}
+
+#index-page .section1 {
+	width: 12.7rem;
+	height: 21.65rem;
+	float: left;
+}
+.index-content a {
+	display: block;
+}
+
+.section-item-title {
+	padding-left: 1rem;
+	padding-top: 1rem;
+}
+
+.section-item-title h2{
+	font-size: .9rem;
+	font-weight: bold;
+}
+
+.section-item-title p{
+	font-size: .8rem;
+	line-height: 1.5rem;
+}
+
+.section1-item {
+	width: 12.7rem;
+	height: 10.6rem;
+	background:  url(../images/policy_bg.png) no-repeat;
+	background-size: cover;
+	margin-bottom: 0.45rem;
+}
+.section1-item:last-child {
+	background:  url(../images/jiuye_bg.png) no-repeat;
+	background-size: cover;
+	margin-bottom: none;
+}
+
+.icon-box {
+	width: 100%;
+}
+.icon-box a {
+	display: block;
+	width: 50%;
+	height: 6rem;
+	float: left;
+	text-align: center;
+	position: relative;
+	
+}
+.icon-box a p {
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	bottom: 1rem;
+}
+
+
+.section2 {
+	width: 23.8rem;
+	height: 21.65rem;
+	border-radius: .5rem;
+	float: left;
+	background: url(../images/house.png) no-repeat;
+	background-size: cover;
+	margin: 0 .5rem;
+	position: relative;
+	overflow: hidden;
+}
+.section2-content {
+	background: rgba(0,0,0,.4);
+	line-height: 1.5rem;
+	padding: 1rem 1rem;
+	font-size: 0.7rem;
+	position: absolute;
+	bottom:0;
+	cursor: pointer;
+}
+
+.section2-content a {
+	display: inline-block;
+}
+
+.section3 {
+	width: 27.45rem;
+	height: 21.65rem;
+	float: left;
+}
+
+.section3 .section3-item-top {
+	width: 27.45rem;
+	height: 10.6rem;
+	background: url(../images/resource.png) no-repeat;
+	background-size: cover;
+	
+	margin-bottom: 0.45rem;
+}
+.section3 .section3-item-left {
+	width: 16.45rem;
+	height: 10.6rem;
+	background: url(../images/readme.png) no-repeat;
+	background-size: cover;
+	border-radius: 0.833333rem;
+	float: left;
+}
+.section3 .section3-item-right {
+	width: 10.65rem;
+	height: 10.6rem;
+	border-radius: 0.833333rem;
+	background:  url(../images/guide_bg.png) no-repeat;
+	background-size: cover;
+	float: right;
+}
+
+.wechat-focus {
+	width: 9.2rem;
+	text-align: center;
+	position: absolute;
+	left: 5rem;
+	bottom: 1.35rem;
+}
+.wechat-focus img {
+	display: block;
+	text-align: center;
+}
+.wechat {
+	width: 9.2rem;
+	height: 9.2rem;
+}
+.wechat-text {
+	width: 8.3rem;
+	height: 1.45rem;
+	margin-top: 0.75rem;
+	margin-left:1rem;
+}
+
+
+.company {
+	width: 24.35rem;
+	height: 1.35rem;
+	background: url(../images/company.png) no-repeat;
+	background-size: cover;
+	position: absolute;
+	bottom: 1.35rem;
+	right:4.9rem;
+}
+
+
+.clickbtn {
+	cursor: pointer;
+}

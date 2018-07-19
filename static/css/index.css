@@ -1,8 +1,11 @@
+html {
+	font-size: 20px;
+}
 body {
 	width: 100%;
 	background: #0C0026;
 	color: #fff;
-	font-size: 1.333333rem;
+	/*font-size: 1.333333rem;*/
 	overflow: hidden;
 }
 .container {
@@ -29,7 +32,7 @@ body {
 }
 .header .date {
 	float:left;
-	font-size: 2rem;
+	font-size: 1.2rem;
 }
 
 .header .header-title {
@@ -37,7 +40,7 @@ body {
 	background: linear-gradient(#2A5EC3, #06D8D5);
     -webkit-background-clip: text;
    	color: transparent;
-   	font-size: 3.666666rem;
+   	font-size: 2.2rem;
    	font-weight: bold;
    	letter-spacing:0.416666rem;
    	text-align: center;
@@ -57,16 +60,14 @@ body {
 }
 
 .bigdata-content {
-	padding-top: 2.416666rem;
-/*	display: none;*/
-	
+	padding-top: 2.416666rem;	
 }
 
 
 
 
 .section1 {
-	width: 35.833333rem;
+	width: 21.5rem;
 	float: left;
 }
 
@@ -123,6 +124,12 @@ body {
 	margin-right: 1.583333rem;
 }
 
+#barchart {
+	width: 21.5rem;
+	height: 19.166666rem;
+	display: none;
+}
+
 
 .section2 {
 	width: 68.75rem;
@@ -166,7 +173,6 @@ body {
 .item-level-one span:last-child em {
 	position: absolute;
 	bottom:-1rem;
-	/*right: 5px;*/
 }
 .item-level-one span:last-child ol li span{
 	font-size: 3.833333rem;
@@ -340,6 +346,10 @@ width: 40.583333rem;
 	height: 20rem;
 	float: left;
 	position: relative;
+}
+.piechart div {
+	width:10.833333rem;
+	height:10rem;
 }
 .piechart p {
 	width: 8rem;

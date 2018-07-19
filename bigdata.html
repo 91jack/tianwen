@@ -46,7 +46,7 @@
 					</div>
 					<div class="section-item-content barchart">
 						<!--柱状图-->
-						<div id="barchart" style="width: 430px;height: 230px;"></div>
+						<div id="barchart"></div>
 					</div>
 				</div>
 			</div>
@@ -141,11 +141,11 @@
 					</div>
 					<div class="section-item-content">
 						<div class="section3-tab-btn">
-							<a href="javaacript:;" class="active">服务人群</a>
-							<a href="javaacript:;">服务单位</a>
-							<a href="javaacript:;">夜市摊位</a>
-							<a href="javaacript:;">创业街</a>
-							<a href="javaacript:;">公益岗位</a>
+							<a href="javascript:;" class="active">服务人群</a>
+							<a href="javascript:;">服务单位</a>
+							<a href="javascript:;">夜市摊位</a>
+							<a href="javascript:;">创业街</a>
+							<a href="javascript:;">公益岗位</a>
 						</div>
 
 						<div class="section3-tab-content">
@@ -186,7 +186,7 @@
 					<div class="piechart">
 						<div id="piechart1" style="width:260px;height:240px;"></div>
 						<p>年龄</p>
-					</div>
+					</div>    
 					<div class="piechart">
 						<div id="piechart2" style="width:260px;height:240px;"></div>
 						<p>学历</p>
@@ -515,7 +515,7 @@
 				},15000)
 				setInterval(function(){
 					mapScatterFn();
-				},5000)
+				},1000)
 				
 				
 				var mapChart = echarts.init(document.getElementById('mapchart'));
@@ -628,7 +628,7 @@
 						dataType: "jsonp",
 						success: function(res) {
 							var users = res.data.users;
-							console.log(scatterData)
+							//console.log(users)
 							if(users.length > 0){
 								for(var i=0;i<users.length;i++){
 									scatterData.push({name:users[i].user_name,value:[users[i].lng,users[i].lat]})
@@ -643,14 +643,15 @@
 						            rippleEffect: {
 						                brushType: 'stroke'
 						            },
-						            //symbol: 'arrow',
 						            symbolSize: 10,
 						            hoverAnimation: true,
 						            label: {
 						                normal: {
 						                    formatter: '{b}',
 						                    position: 'right',
-						                    //show: true
+						                    show: true,
+						                    color:'#fff',
+						                    
 						                }
 						            },
 						          
@@ -681,8 +682,8 @@
 
 				// 柱状图
 				// 基于准备好的dom，初始化echarts实例
+				var barChart = echarts.init(document.getElementById('barchart'));
 				function barChartFn(xData, barData) {
-					var barChart = echarts.init(document.getElementById('barchart'));
 					var barOption = {
 						color: ['#3398DB'],
 						tooltip: {
@@ -735,7 +736,7 @@
 						series: [{
 							name: '岗位数量',
 							type: 'bar',
-							barWidth: '10',
+							barMaxWidth: '10',
 							itemStyle: {
 								normal: {
 									color: new echarts.graphic.LinearGradient(
@@ -757,7 +758,15 @@
 
 					// 使用刚指定的配置项和数据显示图表。
 					barChart.setOption(barOption);
+					/*窗口自适应，关键代码*/
+		        	setTimeout(function (){
+		        	    window.onresize = function () {
+		        	    	barChart.resize();
+		        	    }
+		        	},200)
+
 				}
+					
 
 				// 时间
 				// 获取本地时间
@@ -1415,6 +1424,9 @@
 				//console.log(numberHTML);//return numberHTML;
 				return numberHTML;
 			}
+			
+			
+			
 		</script>
 	</body>
 
