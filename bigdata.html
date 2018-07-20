@@ -269,9 +269,9 @@
 				// 服务人群，公益性岗位，成功服务量
 				tongjiDom()
 				// 10S钟刷新
-//				setInterval(function() {
-//					tongjiDom()
-//				}, 5000)
+				setInterval(function() {
+					tongjiDom()
+				}, 5000)
 
 				function tongjiDom() {
 					$.ajax({
@@ -422,9 +422,9 @@
 				jydcDom()
 
 				// 5S钟刷新1次
-//				setInterval(function() {
-//					jydcDom()
-//				}, 5000)
+				setInterval(function() {
+					jydcDom()
+				}, 5000)
 
 				function jydcDom() {
 					$.ajax({
@@ -490,15 +490,15 @@
 
 						// 饼图轮播
 						var n = 0;
-//						setInterval(function() {
-//							n++;
-//							$('.piechart-wrap').css({
-//								'transform': 'translateX(' + -13 * n + 'rem)'
-//							});
-//							if(n > 2) {
-//								n = 0;
-//							}
-//						}, 5000)
+						setInterval(function() {
+							n++;
+							$('.piechart-wrap').css({
+								'transform': 'translateX(' + -13 * n + 'rem)'
+							});
+							if(n > 2) {
+								n = 0;
+							}
+						}, 5000)
 
 					}
 				});
@@ -508,12 +508,12 @@
 				//绘制重庆地图
 				mapFn()
 				
-//				setInterval(function(){
-//					mapFn();
-//				},15000)
-//				setInterval(function(){
-//					mapScatterFn();
-//				},1000)
+				setInterval(function(){
+					mapFn();
+				},15000)
+				setInterval(function(){
+					mapScatterFn();
+				},1000)
 				
 				
 				var mapChart = echarts.init(document.getElementById('mapchart'));
@@ -1269,17 +1269,17 @@
 							trigger: 'axis'
 						},
 						legend: {
-							top: 10,
+							top: 3,
 							textStyle: {
 								color: '#fff',
 							},
 							data: ['找工作', '找帮助', '找培训', '公共服务']
 						},
 						grid: {
-							top: '15%',
+							top: '18%',
 							left: '5%',
 							right: '0',
-							bottom: '10%',
+							bottom: '2%',
 							containLabel: true
 						},
 						xAxis: [{
