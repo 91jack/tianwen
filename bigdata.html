@@ -127,7 +127,6 @@
 				<div class="section2-chart">
 					<div id="mapchart"></div>
 				</div>
-
 			</div>
 
 			<div class="section3">
@@ -182,38 +181,38 @@
 				</div>
 				<div class="piechart-wrap">
 					<div class="piechart">
-						<div id="piechart1" style="width:260px;height:240px;"></div>
+						<div id="piechart1" ></div>
 						<p>年龄</p>
 					</div>    
 					<div class="piechart">
-						<div id="piechart2" style="width:260px;height:240px;"></div>
+						<div id="piechart2"></div>
 						<p>学历</p>
 					</div>
 					<div class="piechart">
-						<div id="piechart3" style="width:260px;height:240px;"></div>
+						<div id="piechart3"></div>
 						<p>政治面貌</p>
 					</div>
 					<div class="piechart">
-						<div id="piechart4" style="width:260px;height:240px;"></div>
-						<p>就业困难人员</p>
+						<div id="piechart4"></div>
+						<p>就业困难<br/>人员</p>
 					</div>
 					<div class="piechart">
-						<div id="piechart5" style="width:260px;height:240px;"></div>
-						<p>大学毕业生</p>
+						<div id="piechart5"></div>
+						<p>大学<br/>毕业生</p>
 					</div>
 
 					<div class="piechart">
-						<div id="piechart6" style="width:260px;height:240px;"></div>
+						<div id="piechart6"></div>
 						<p>性别</p>
 					</div>
 
 					<div class="piechart">
-						<div id="piechart7" style="width:260px;height:240px;"></div>
+						<div id="piechart7"></div>
 						<p>就业状态</p>
 					</div>
 
 					<div class="piechart">
-						<div id="piechart8" style="width:260px;height:240px;"></div>
+						<div id="piechart8"></div>
 						<p>残疾</p>
 					</div>
 				</div>
@@ -225,7 +224,7 @@
 					<h2>就业动车关注度（月）</h2>
 					<p>Channel shunt</p>
 				</div>
-				<div id="linechart" style="width: 487px;height:240px;"></div>
+				<div id="linechart"></div>
 			</div>
 		</div>
 	</div>
@@ -395,6 +394,7 @@
 					}
 				});
 
+				// 就业动车社会效益展示 tab切换
 				$('.section3-tab-btn a').each(function() {
 					$(this).on('click', function() {
 						var index = $(this).index()
@@ -490,15 +490,15 @@
 
 						// 饼图轮播
 						var n = 0;
-						setInterval(function() {
-							n++;
-							$('.piechart-wrap').css({
-								'transform': 'translateX(' + -21.6 * n + 'rem)'
-							});
-							if(n > 2) {
-								n = 0;
-							}
-						}, 5000)
+//						setInterval(function() {
+//							n++;
+//							$('.piechart-wrap').css({
+//								'transform': 'translateX(' + -13 * n + 'rem)'
+//							});
+//							if(n > 2) {
+//								n = 0;
+//							}
+//						}, 5000)
 
 					}
 				});
@@ -756,13 +756,6 @@
 
 					// 使用刚指定的配置项和数据显示图表。
 					barChart.setOption(barOption);
-					/*窗口自适应，关键代码*/
-		        	setTimeout(function (){
-		        	    window.onresize = function () {
-		        	    	barChart.resize();
-		        	    }
-		        	},200)
-
 				}
 					
 
@@ -802,11 +795,11 @@
 							formatter: "{a} <br/>{b}: {c} ({d}%)"
 						},
 						legend: {
-							bottom: '10',
+							bottom: '0',
 							itemWidth: 10,
 							itemHeight: 10,
 							borderRadius: 10,
-							padding: [10, 50],
+							padding: [10, 30],
 							textStyle: {
 								color: '#fff',
 							},
@@ -866,7 +859,7 @@
 							formatter: "{a} <br/>{b}: {c} ({d}%)"
 						},
 						legend: {
-							bottom: '10',
+							bottom: '0',
 							itemWidth: 10,
 							itemHeight: 10,
 							borderRadius: 10,
@@ -928,7 +921,7 @@
 							formatter: "{a} <br/>{b}: {c} ({d}%)"
 						},
 						legend: {
-							bottom: '10',
+							bottom: '0',
 							itemWidth: 10,
 							itemHeight: 10,
 							borderRadius: 10,
@@ -990,7 +983,7 @@
 							formatter: "{a} <br/>{b}: {c} ({d}%)"
 						},
 						legend: {
-							bottom: '10',
+							bottom: '0',
 							itemWidth: 10,
 							itemHeight: 10,
 							borderRadius: 10,
@@ -1053,7 +1046,7 @@
 							formatter: "{a} <br/>{b}: {c} ({d}%)"
 						},
 						legend: {
-							bottom: '10',
+							bottom: '0',
 							itemWidth: 10,
 							itemHeight: 10,
 							borderRadius: 10,
@@ -1109,7 +1102,7 @@
 							formatter: "{a} <br/>{b}: {c} ({d}%)"
 						},
 						legend: {
-							bottom: '10',
+							bottom: '0',
 							itemWidth: 10,
 							itemHeight: 10,
 							borderRadius: 10,
@@ -1165,7 +1158,7 @@
 							formatter: "{a} <br/>{b}: {c} ({d}%)"
 						},
 						legend: {
-							bottom: '10',
+							bottom: '0',
 							itemWidth: 10,
 							itemHeight: 10,
 							borderRadius: 10,
@@ -1221,7 +1214,7 @@
 							formatter: "{a} <br/>{b}: {c} ({d}%)"
 						},
 						legend: {
-							bottom: '10',
+							bottom: '0',
 							itemWidth: 10,
 							itemHeight: 10,
 							borderRadius: 10,
@@ -1355,7 +1348,8 @@
 				}
 
 			})
-
+	
+		// 时间格式化
 			function formatDateTime(inputTime) {
 				var date = new Date(inputTime);
 
