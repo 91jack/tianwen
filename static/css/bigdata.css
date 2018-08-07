@@ -93,8 +93,8 @@ ul,ol,li{
 }
 .section-item-list li {
 	height: 2rem;
-	line-height: 2rem;
 	font-size: 0.8rem;
+	position: relative;
 }
 
 .section-item-list li:nth-child(2n+1){
@@ -104,30 +104,36 @@ ul,ol,li{
 	display: inline-block;
 	width: 2rem;
 	height: 1.2rem;
-	margin-left: 0.4rem;
-	margin-right: 0.8rem;
 	line-height: 1.2rem;
 	text-align: center;
 	background: #3C9DD2;
 	border-radius: 0.1rem;
 	color: #100635;
+	position: absolute;
+	top:.4rem;
+	left: .5rem;
 }
 .section-item-list li span:nth-child(2) {
 	display: inline-block;
-	width: 15rem;
+	width: 13rem;
 	overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+    line-height: 2rem;
+    margin-left: 3rem;
 }
 
 
 .section-item-list li span:last-child {
 	display: inline-block;
-	float: right;
 	color: #3C9DD2;
-	margin-right: 0.95rem;
+	position: absolute;
+	top:.4rem;
+	right:.5rem;
 }
-
+.section3-list li span:last-child {
+	top:0;
+}
 #barchart {
 	width: 21.45rem;
 	height: 12rem;

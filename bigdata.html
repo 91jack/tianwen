@@ -402,6 +402,18 @@
 						$('.section3-tab-content ul').eq(index).addClass('active').siblings().removeClass('active');
 					})
 				})
+				// 社会动车效益自动切换展示
+				var index=0;
+				setInterval(function(){
+					index++;
+					if(index>$('.section3-tab-btn a').length-1){
+						index=0;
+					}
+					$('.section3-tab-btn a').eq(index).addClass('active').siblings().removeClass('active');
+					$('.section3-tab-content ul').eq(index).addClass('active').siblings().removeClass('active');
+				},5000)
+				
+				
 
 				// 就业动车岗位分类展示
 				var xData = [];
@@ -498,7 +510,7 @@
 							if(n > 2) {
 								n = 0;
 							}
-						}, 5000)
+						}, 10000)
 
 					}
 				});
@@ -790,10 +802,6 @@
 					var pieChart1 = echarts.init(document.getElementById('piechart1'));
 					var pieOption1 = {
 						color: ['#FFB50A', '#8C04FA', '#10BD8F', '#0DB7DB'],
-						tooltip: {
-							trigger: 'item',
-							formatter: "{a} <br/>{b}: {c} ({d}%)"
-						},
 						legend: {
 							bottom: '0',
 							itemWidth: 10,
@@ -854,10 +862,6 @@
 					var pieChart2 = echarts.init(document.getElementById('piechart2'));
 					var pieOption2 = {
 						color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-						tooltip: {
-							trigger: 'item',
-							formatter: "{a} <br/>{b}: {c} ({d}%)"
-						},
 						legend: {
 							bottom: '0',
 							itemWidth: 10,
@@ -916,10 +920,6 @@
 					var pieChart3 = echarts.init(document.getElementById('piechart3'));
 					var pieOption3 = {
 						color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-						tooltip: {
-							trigger: 'item',
-							formatter: "{a} <br/>{b}: {c} ({d}%)"
-						},
 						legend: {
 							bottom: '0',
 							itemWidth: 10,
@@ -978,10 +978,6 @@
 					var pieChart4 = echarts.init(document.getElementById('piechart4'));
 					var pieOption4 = {
 						color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-						tooltip: {
-							trigger: 'item',
-							formatter: "{a} <br/>{b}: {c} ({d}%)"
-						},
 						legend: {
 							bottom: '0',
 							itemWidth: 10,
@@ -1041,10 +1037,6 @@
 					var pieChart5 = echarts.init(document.getElementById('piechart5'));
 					var pieOption5 = {
 						color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-						tooltip: {
-							trigger: 'item',
-							formatter: "{a} <br/>{b}: {c} ({d}%)"
-						},
 						legend: {
 							bottom: '0',
 							itemWidth: 10,
@@ -1097,10 +1089,6 @@
 					var pieChart6 = echarts.init(document.getElementById('piechart6'));
 					var pieOption6 = {
 						color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-						tooltip: {
-							trigger: 'item',
-							formatter: "{a} <br/>{b}: {c} ({d}%)"
-						},
 						legend: {
 							bottom: '0',
 							itemWidth: 10,
@@ -1153,10 +1141,6 @@
 					var pieChart7 = echarts.init(document.getElementById('piechart7'));
 					var pieOption7 = {
 						color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-						tooltip: {
-							trigger: 'item',
-							formatter: "{a} <br/>{b}: {c} ({d}%)"
-						},
 						legend: {
 							bottom: '0',
 							itemWidth: 10,
@@ -1209,10 +1193,6 @@
 					var pieChart8 = echarts.init(document.getElementById('piechart8'));
 					var pieOption8 = {
 						color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-						tooltip: {
-							trigger: 'item',
-							formatter: "{a} <br/>{b}: {c} ({d}%)"
-						},
 						legend: {
 							bottom: '0',
 							itemWidth: 10,
